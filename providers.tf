@@ -14,10 +14,7 @@ variable "adguard_password" {
 }
 
 provider "adguard" {
-  host     = "https://adguard-home-prod-01.dns-prod-01.internal.dontddos.me"
+  host     = "adguard-home-prod-01.dns-prod-01.internal.dontddos.me"
   username = "ddos"
-  password = "SecretP@ssw0rd"
-  scheme   = "http" # defaults to https
-  timeout  = 5      # in seconds, defaults to 10
-  insecure = false  # when `true` will skip TLS validation
+  password = var.adguard_password
 }
