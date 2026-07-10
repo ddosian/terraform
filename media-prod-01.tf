@@ -7,3 +7,18 @@ resource "adguard_rewrite" "media-prod-01_wildcard_record" {
   domain = "*.media-prod-01.internal.dontddos.me"
   answer = "media-prod-01.internal.dontddos.me"
 }
+
+# Dockhand Environment
+resource "dockhand_environment" "media-prod-01_dockhand_environment" {
+  name            = "media-prod-01"
+  connection_type = "direct"
+  host     = "media-prod-01.internal.dontddos.me"
+
+  protocol        = "https"
+  port            = 2376
+  tls_skip_verify = false
+  ca_cert     = file("${path.module}/../ansible/docker-keys/media-prod-01/ca.pem")
+  client_cert = file("${path.module}/../ansible/docker-keys/media-prod-01/cert.pem")
+  client_key  = file("${path.module}/../ansible/docker-keys/media-prod-01/key.pem")
+  icon            = "server"
+}
