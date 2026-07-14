@@ -1,0 +1,75 @@
+;;
+;; Domain:     dontddos.me.
+;; Exported:   2026-07-14 19:56:15
+;;
+;; This file is intended for use for informational and archival
+;; purposes ONLY and MUST be edited before use on a production
+;; DNS server.  In particular, you must:
+;;   -- update the SOA record with the correct authoritative name server
+;;   -- update the SOA record with the contact e-mail address information
+;;   -- update the NS record(s) with the authoritative name servers for this domain.
+;;
+;; For further information, please consult the BIND documentation
+;; located on the following website:
+;;
+;; http://www.isc.org/
+;;
+;; And RFC 1035:
+;;
+;; http://www.ietf.org/rfc/rfc1035.txt
+;;
+;; Please note that we do NOT offer technical support for any use
+;; of this zone data, the BIND name server, or any other third-party
+;; DNS software.
+;;
+;; Use at your own risk.
+;; SOA Record
+dontddos.me	3600	IN	SOA	eoin.ns.cloudflare.com. dns.cloudflare.com. 2053572557 10000 2400 604800 3600
+
+;; NS Records
+dontddos.me.	86400	IN	NS	eoin.ns.cloudflare.com.
+dontddos.me.	86400	IN	NS	lorna.ns.cloudflare.com.
+
+;; A Records
+dontddos.me.	1	IN	A	156.67.29.169 ; cf_tags=cf-proxied:false
+*.matrix.dontddos.me.	1	IN	A	156.67.29.169 ; Managed by Terraform cf_tags=cf-proxied:false
+matrix.dontddos.me.	1	IN	A	156.67.29.169 ; Managed by Terraform cf_tags=cf-proxied:false
+vps-prod-01.dontddos.me.	1	IN	A	156.67.29.169 ; Managed by Terraform cf_tags=cf-proxied:false
+vps-prod-02.dontddos.me.	1	IN	A	38.242.248.156 ; Managed by Terraform cf_tags=cf-proxied:false
+wings-prod-01.dontddos.me.	1	IN	A	156.67.29.169 ; cf_tags=cf-proxied:false
+
+;; CNAME Records
+auth.dontddos.me.	1	IN	CNAME	vps-prod-01.dontddos.me. ; Managed by Terraform cf_tags=cf-proxied:false
+calagopus.dontddos.me.	1	IN	CNAME	vps-prod-01.dontddos.me. ; Managed by Terraform cf_tags=cf-proxied:false
+dkim02._domainkey.alias.dontddos.me.	1	IN	CNAME	dkim02._domainkey.simplelogin.co. ; cf_tags=cf-proxied:false
+dkim03._domainkey.alias.dontddos.me.	1	IN	CNAME	dkim03._domainkey.simplelogin.co. ; cf_tags=cf-proxied:false
+dkim._domainkey.alias.dontddos.me.	1	IN	CNAME	dkim._domainkey.simplelogin.co. ; cf_tags=cf-proxied:false
+gitlab.dontddos.me.	1	IN	CNAME	vps-prod-01.dontddos.me. ; Managed by Terraform cf_tags=cf-proxied:false
+jellyfin.dontddos.me.	1	IN	CNAME	vps-prod-01.dontddos.me. ; Managed by Terraform cf_tags=cf-proxied:false
+navidrome.dontddos.me.	1	IN	CNAME	vps-prod-01.dontddos.me. ; Managed by Terraform cf_tags=cf-proxied:false
+netbird.dontddos.me.	1	IN	CNAME	vps-prod-02.dontddos.me. ; Managed by Terraform cf_tags=cf-proxied:false
+pangolin.dontddos.me.	1	IN	CNAME	vps-prod-01.dontddos.me. ; Managed by Terraform cf_tags=cf-proxied:false
+protonmail2._domainkey.dontddos.me.	1	IN	CNAME	protonmail2.domainkey.dk7rn4h4c3mlcummpygdpvblcu2lkvalznmlpdnkh2awnmix6yk2q.domains.proton.ch. ; cf_tags=cf-proxied:false
+protonmail3._domainkey.dontddos.me.	1	IN	CNAME	protonmail3.domainkey.dk7rn4h4c3mlcummpygdpvblcu2lkvalznmlpdnkh2awnmix6yk2q.domains.proton.ch. ; cf_tags=cf-proxied:false
+protonmail._domainkey.dontddos.me.	1	IN	CNAME	protonmail.domainkey.dk7rn4h4c3mlcummpygdpvblcu2lkvalznmlpdnkh2awnmix6yk2q.domains.proton.ch. ; cf_tags=cf-proxied:false
+registry.gitlab.dontddos.me.	1	IN	CNAME	vps-prod-01.dontddos.me. ; Managed by Terraform cf_tags=cf-proxied:false
+seerr.dontddos.me.	1	IN	CNAME	vps-prod-01.dontddos.me. ; Managed by Terraform cf_tags=cf-proxied:false
+
+;; MX Records
+alias.dontddos.me.	1	IN	MX	20 mx2.simplelogin.co.
+alias.dontddos.me.	1	IN	MX	10 mx1.simplelogin.co.
+dontddos.me.	1	IN	MX	20 mailsec.protonmail.ch.
+dontddos.me.	1	IN	MX	10 mail.protonmail.ch.
+
+;; SRV Records
+_matrix-fed._tcp.matrix.dontddos.me.	1	IN	SRV	10 5 443 matrix.dontddos.me.
+_matrix._tcp.matrix.dontddos.me.	1	IN	SRV	10 5 443 matrix.dontddos.me.
+
+;; TXT Records
+alias.dontddos.me.	1	IN	TXT	"v=spf1 include:simplelogin.co ~all"
+alias.dontddos.me.	1	IN	TXT	"sl-verification=qwauutcftalxawvfwucyosaezjrdpy"
+_dmarc.alias.dontddos.me.	1	IN	TXT	"v=DMARC1; p=quarantine; pct=100; adkim=s; aspf=s"
+_dmarc.dontddos.me.	1	IN	TXT	"v=DMARC1; p=quarantine"
+dontddos.me.	1	IN	TXT	"protonmail-verification=0ebb9892aa0f3b4963e0b2855d1740e1ce23d2ac"
+dontddos.me.	1	IN	TXT	"v=DMARC1; p=quarantine"
+dontddos.me.	1	IN	TXT	"v=spf1 include:_spf.protonmail.ch ~all"

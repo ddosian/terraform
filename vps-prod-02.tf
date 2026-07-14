@@ -12,3 +12,14 @@ resource "dockhand_environment" "vps-prod-02_dockhand_environment" {
   client_key  = file("${path.module}/../ansible/docker-keys/vps-prod-02/key.pem")
   icon            = "server"
 }
+
+# Cloudflare DNS records
+resource "cloudflare_dns_record" "vps-prod-02_cloudflare_record" {
+  zone_id = "310137280dfff667dd7414c94ef3a938"
+  name = "vps-prod-02.dontddos.me"
+  ttl = 1
+  type = "A"
+  comment = "Managed by Terraform"
+  content = "38.242.248.156"
+  proxied = false
+}

@@ -18,3 +18,24 @@ resource "dockhand_environment" "gl-prod-01_dockhand_environment" {
   client_key  = file("${path.module}/../ansible/docker-keys/gl-prod-01/key.pem")
   icon            = "server"
 }
+
+# Cloudflare DNS records
+resource "cloudflare_dns_record" "gitlab-prod-01_cloudflare_record" {
+  zone_id = "310137280dfff667dd7414c94ef3a938"
+  name = "gitlab.dontddos.me"
+  ttl = 1
+  type = "CNAME"
+  comment = "Managed by Terraform"
+  content = "vps-prod-01.dontddos.me"
+  proxied = false
+}
+
+resource "cloudflare_dns_record" "gitlab-prod-01_registry_cloudflare_record" {
+  zone_id = "310137280dfff667dd7414c94ef3a938"
+  name = "registry.gitlab.dontddos.me"
+  ttl = 1
+  type = "CNAME"
+  comment = "Managed by Terraform"
+  content = "vps-prod-01.dontddos.me"
+  proxied = false
+}
