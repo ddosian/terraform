@@ -8,6 +8,10 @@ terraform {
       source  = "kalebharrison/dockhand"
       version = ">= 0.1.63"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 5"
+    }
   }
 }
 
@@ -37,4 +41,14 @@ variable "dockhand_api_token" {
 provider "dockhand" {
   endpoint    = var.dockhand_endpoint
   api_token    = var.dockhand_api_token
+}
+
+variable "cloudflare_api_token" {
+  description = "The API token for the Cloudflare API"
+  type        = string
+  sensitive   = true
+}
+
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
 }
