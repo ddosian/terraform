@@ -30,4 +30,5 @@ resource "uptimekuma_monitor_ping" "pve-prod-03_uptimekuma_monitor" {
   upside_down    = false
   active         = true
   packet_size    = 56
+  parent         = uptimekuma_monitor_group.proxmox-ve_monitor_group.id
 }

@@ -30,4 +30,5 @@ resource "uptimekuma_monitor_ping" "nb-prod-02_uptimekuma_monitor" {
   upside_down    = false
   active         = true
   packet_size    = 56
+  parent         = uptimekuma_monitor_group.networking_monitor_group.id
 }
