@@ -16,6 +16,10 @@ terraform {
       source  = "breml/uptimekuma"
       version = "~> 0.1"
     }
+    authentik = {
+      source  = "goauthentik/authentik"
+      version = "2026.5.0"
+    }
   }
 }
 
@@ -72,4 +76,16 @@ provider "uptimekuma" {
   endpoint = "https://uptime-kuma-prod-01.k3s-cl-prod-02.internal.dontddos.me"
   username = var.uptimekuma_username
   password = var.uptimekuma_password
+}
+
+variable authentik_token {
+  type        = string
+  description = "description"
+  sensitive   = true
+}
+
+
+provider "authentik" {
+  url   = "https://auth.dontddos.me"
+  token = var.authentik_token
 }

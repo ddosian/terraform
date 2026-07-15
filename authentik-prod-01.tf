@@ -8,3 +8,11 @@ resource "cloudflare_dns_record" "authentik-prod-01_cloudflare_record" {
   content = "vps-prod-01.dontddos.me"
   proxied = false
 }
+
+data "authentik_flow" "explicit-authorization-flow" {
+  slug = "default-provider-authorization-explicit-consent"
+}
+
+data "authentik_flow" "default-provider-invalidation-flow" {
+  slug = "default-provider-invalidation-flow"
+}
