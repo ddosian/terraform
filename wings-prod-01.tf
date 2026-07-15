@@ -14,3 +14,16 @@ resource "cloudflare_dns_record" "wings-prod-01_cloudflare_record" {
   content  = "156.67.29.169"
   proxied  = false
 }
+
+# Uptime Kuma Monitor
+resource "uptimekuma_monitor_ping" "wings-prod-01_uptimekuma_monitor" {
+  name     = "Wings-Prod-01"
+  hostname       = "wings-prod-01.internal.dontddos.me"
+  interval       = 60
+  timeout        = 30
+  max_retries    = 2
+  retry_interval = 60
+  upside_down    = false
+  active         = true
+  packet_size    = 56
+}

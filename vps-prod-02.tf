@@ -23,3 +23,16 @@ resource "cloudflare_dns_record" "vps-prod-02_cloudflare_record" {
   content = "38.242.248.156"
   proxied = false
 }
+
+# Uptime Kuma Monitor
+resource "uptimekuma_monitor_ping" "vps-prod-02_uptimekuma_monitor" {
+  name     = "VPS-Prod-02"
+  hostname       = "vps-prod-02.dontddos.me"
+  interval       = 60
+  timeout        = 30
+  max_retries    = 2
+  retry_interval = 60
+  upside_down    = false
+  active         = true
+  packet_size    = 56
+}

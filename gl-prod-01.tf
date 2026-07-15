@@ -39,3 +39,16 @@ resource "cloudflare_dns_record" "gitlab-prod-01_registry_cloudflare_record" {
   content = "vps-prod-01.dontddos.me"
   proxied = false
 }
+
+# Uptime Kuma Monitor
+resource "uptimekuma_monitor_ping" "gl-prod-01_uptimekuma_monitor" {
+  name     = "GL-Prod-01"
+  hostname       = "gl-prod-01.internal.dontddos.me"
+  interval       = 60
+  timeout        = 30
+  max_retries    = 2
+  retry_interval = 60
+  upside_down    = false
+  active         = true
+  packet_size    = 56
+}

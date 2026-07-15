@@ -12,6 +12,10 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 5"
     }
+    uptimekuma = {
+      source  = "breml/uptimekuma"
+      version = "~> 0.1"
+    }
   }
 }
 
@@ -51,4 +55,21 @@ variable "cloudflare_api_token" {
 
 provider "cloudflare" {
   api_token = var.cloudflare_api_token
+}
+
+variable "uptimekuma_username" {
+  description = "The username for the Uptime Kuma instance"
+  type        = string
+}
+
+variable "uptimekuma_password" {
+  description = "The password for the Uptime Kuma instance"
+  type        = string
+  sensitive   = true
+}
+
+provider "uptimekuma" {
+  endpoint = "https://uptime-kuma-prod-01.k3s-cl-prod-02.internal.dontddos.me"
+  username = var.uptimekuma_username
+  password = var.uptimekuma_password
 }

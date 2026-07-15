@@ -21,3 +21,16 @@ resource "dockhand_environment" "dns-prod-02_dockhand_environment" {
   client_key  = file("${path.module}/../ansible/docker-keys/dns-prod-02/key.pem")
   icon            = "server"
 }
+
+# Uptime Kuma Monitor
+resource "uptimekuma_monitor_ping" "dns-prod-02_uptimekuma_monitor" {
+  name     = "DNS-Prod-02"
+  hostname       = "dns-prod-02.internal.dontddos.me"
+  interval       = 60
+  timeout        = 30
+  max_retries    = 2
+  retry_interval = 60
+  upside_down    = false
+  active         = true
+  packet_size    = 56
+}
