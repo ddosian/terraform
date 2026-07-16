@@ -37,3 +37,9 @@ resource "authentik_application" "dockhand-prod-01_authentik_application" {
   meta_icon         = "https://cdn.jsdelivr.net/gh/selfhst/icons/png/dockhand.png"
   group             = "Infrastructure"
 }
+
+resource "authentik_policy_binding" "dockhand-prod-01_lab-admins_authentik_policy_binding" {
+  target = authentik_application.dockhand-prod-01_authentik_application.uuid
+  group  = data.authentik_group.lab_admins.id
+  order  = 0
+}
