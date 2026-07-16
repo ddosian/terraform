@@ -8,20 +8,20 @@ resource "adguard_rewrite" "gl-runner-prod-01_record" {
 resource "dockhand_environment" "gl-runner-prod-01_dockhand_environment" {
   name            = "gl-runner-prod-01"
   connection_type = "direct"
-  host     = "gl-runner-prod-01.internal.dontddos.me"
+  host            = "gl-runner-prod-01.internal.dontddos.me"
 
   protocol        = "https"
   port            = 2376
   tls_skip_verify = false
-  ca_cert     = file("${path.module}/../ansible/docker-keys/gl-runner-prod-01/ca.pem")
-  client_cert = file("${path.module}/../ansible/docker-keys/gl-runner-prod-01/cert.pem")
-  client_key  = file("${path.module}/../ansible/docker-keys/gl-runner-prod-01/key.pem")
+  ca_cert         = file("${path.module}/../ansible/docker-keys/gl-runner-prod-01/ca.pem")
+  client_cert     = file("${path.module}/../ansible/docker-keys/gl-runner-prod-01/cert.pem")
+  client_key      = file("${path.module}/../ansible/docker-keys/gl-runner-prod-01/key.pem")
   icon            = "server"
 }
 
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "gl-runner-prod-01_uptimekuma_monitor" {
-  name     = "GL-Runner-Prod-01"
+  name           = "GL-Runner-Prod-01"
   hostname       = "gl-runner-prod-01.internal.dontddos.me"
   interval       = 60
   timeout        = 30
@@ -41,7 +41,7 @@ resource "authentik_certificate_key_pair" "gl-runner-prod-01-ca_authentik_key_pa
 resource "authentik_certificate_key_pair" "gl-runner-prod-01-client_authentik_key_pair" {
   name             = "gl-runner-prod-01-client"
   certificate_data = file("${path.module}/../ansible/docker-keys/gl-runner-prod-01/cert.pem")
-  key_data = file("${path.module}/../ansible/docker-keys/gl-runner-prod-01/key.pem")
+  key_data         = file("${path.module}/../ansible/docker-keys/gl-runner-prod-01/key.pem")
 }
 
 # Proxmox VM
@@ -71,8 +71,8 @@ resource "proxmox_vm_qemu" "gl-runner-prod-01_proxmox_vm" {
     type = "std"
   }
 
-  boot      = "order=scsi0"
-  bootdisk  = "scsi0"
+  boot     = "order=scsi0"
+  bootdisk = "scsi0"
 
   disks {
     ide {
@@ -93,11 +93,11 @@ resource "proxmox_vm_qemu" "gl-runner-prod-01_proxmox_vm" {
     }
   }
 
-  os_type = "cloud-init"
-  ipconfig0 = "ip=10.77.1.117/16,gw=10.77.0.1"
+  os_type    = "cloud-init"
+  ipconfig0  = "ip=10.77.1.117/16,gw=10.77.0.1"
   nameserver = "10.77.1.103"
-  ciuser = "ddos"
-  sshkeys = <<EOF
+  ciuser     = "ddos"
+  sshkeys    = <<EOF
   ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINQTU6Zw3pqHCDS+MUBXVEDPeDdtstFpK+8SVXN71QG/ admin@dontddos.me Jun 2026
   EOF
 }

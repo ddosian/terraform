@@ -2,14 +2,14 @@
 resource "dockhand_environment" "wings-prod-01_dockhand_environment" {
   name            = "wings-prod-01"
   connection_type = "direct"
-  host     = "wings-prod-01.internal.dontddos.me"
+  host            = "wings-prod-01.internal.dontddos.me"
 
   protocol        = "https"
   port            = 2376
   tls_skip_verify = false
-  ca_cert     = file("${path.module}/../ansible/docker-keys/wings-prod-01/ca.pem")
-  client_cert = file("${path.module}/../ansible/docker-keys/wings-prod-01/cert.pem")
-  client_key  = file("${path.module}/../ansible/docker-keys/wings-prod-01/key.pem")
+  ca_cert         = file("${path.module}/../ansible/docker-keys/wings-prod-01/ca.pem")
+  client_cert     = file("${path.module}/../ansible/docker-keys/wings-prod-01/cert.pem")
+  client_key      = file("${path.module}/../ansible/docker-keys/wings-prod-01/key.pem")
   icon            = "server"
 }
 
@@ -21,18 +21,18 @@ resource "adguard_rewrite" "wings-prod-01_record" {
 
 # Cloudflare DNS records
 resource "cloudflare_dns_record" "wings-prod-01_cloudflare_record" {
-  zone_id  = "310137280dfff667dd7414c94ef3a938"
-  name     = "wings-prod-01.dontddos.me"
-  ttl      = 1
-  type     = "A"
-  comment  = "Managed by Terraform"
-  content  = "156.67.29.169"
-  proxied  = false
+  zone_id = "310137280dfff667dd7414c94ef3a938"
+  name    = "wings-prod-01.dontddos.me"
+  ttl     = 1
+  type    = "A"
+  comment = "Managed by Terraform"
+  content = "156.67.29.169"
+  proxied = false
 }
 
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "wings-prod-01_uptimekuma_monitor" {
-  name     = "Wings-Prod-01"
+  name           = "Wings-Prod-01"
   hostname       = "wings-prod-01.internal.dontddos.me"
   interval       = 60
   timeout        = 30
@@ -52,5 +52,5 @@ resource "authentik_certificate_key_pair" "wings-prod-01-ca_authentik_key_pair" 
 resource "authentik_certificate_key_pair" "wings-prod-01-client_authentik_key_pair" {
   name             = "wings-prod-01-client"
   certificate_data = file("${path.module}/../ansible/docker-keys/wings-prod-01/cert.pem")
-  key_data = file("${path.module}/../ansible/docker-keys/wings-prod-01/key.pem")
+  key_data         = file("${path.module}/../ansible/docker-keys/wings-prod-01/key.pem")
 }

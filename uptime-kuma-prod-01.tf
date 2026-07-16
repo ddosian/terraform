@@ -1,6 +1,6 @@
 resource "uptimekuma_monitor_group" "infrastructure_monitor_group" {
-  name    = "Infrastructure"
-  active  = true
+  name   = "Infrastructure"
+  active = true
 }
 
 resource "uptimekuma_monitor_group" "kubernetes_monitor_group" {

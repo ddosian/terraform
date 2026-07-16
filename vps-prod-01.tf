@@ -2,23 +2,23 @@
 resource "dockhand_environment" "vps-prod-01_dockhand_environment" {
   name            = "vps-prod-01"
   connection_type = "direct"
-  host     = "vps-prod-01.dontddos.me"
+  host            = "vps-prod-01.dontddos.me"
 
   protocol        = "https"
   port            = 2376
   tls_skip_verify = false
-  ca_cert     = file("${path.module}/../ansible/docker-keys/vps-prod-01/ca.pem")
-  client_cert = file("${path.module}/../ansible/docker-keys/vps-prod-01/cert.pem")
-  client_key  = file("${path.module}/../ansible/docker-keys/vps-prod-01/key.pem")
+  ca_cert         = file("${path.module}/../ansible/docker-keys/vps-prod-01/ca.pem")
+  client_cert     = file("${path.module}/../ansible/docker-keys/vps-prod-01/cert.pem")
+  client_key      = file("${path.module}/../ansible/docker-keys/vps-prod-01/key.pem")
   icon            = "server"
 }
 
 # Cloudflare DNS records
 resource "cloudflare_dns_record" "vps-prod-01_cloudflare_record" {
   zone_id = "310137280dfff667dd7414c94ef3a938"
-  name = "vps-prod-01.dontddos.me"
-  ttl = 1
-  type = "A"
+  name    = "vps-prod-01.dontddos.me"
+  ttl     = 1
+  type    = "A"
   comment = "Managed by Terraform"
   content = "156.67.29.169"
   proxied = false
@@ -26,7 +26,7 @@ resource "cloudflare_dns_record" "vps-prod-01_cloudflare_record" {
 
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "vps-prod-01_uptimekuma_monitor" {
-  name     = "VPS-Prod-01"
+  name           = "VPS-Prod-01"
   hostname       = "vps-prod-01.dontddos.me"
   interval       = 60
   timeout        = 30
@@ -46,5 +46,5 @@ resource "authentik_certificate_key_pair" "vps-prod-01-ca_authentik_key_pair" {
 resource "authentik_certificate_key_pair" "vps-prod-01-client_authentik_key_pair" {
   name             = "vps-prod-01-client"
   certificate_data = file("${path.module}/../ansible/docker-keys/vps-prod-01/cert.pem")
-  key_data = file("${path.module}/../ansible/docker-keys/vps-prod-01/key.pem")
+  key_data         = file("${path.module}/../ansible/docker-keys/vps-prod-01/key.pem")
 }

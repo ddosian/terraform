@@ -5,7 +5,7 @@ resource "adguard_rewrite" "pbs-prod-01_record" {
 
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "pbs-prod-01_uptimekuma_monitor" {
-  name     = "PBS-Prod-01"
+  name           = "PBS-Prod-01"
   hostname       = "pbs-prod-01.internal.dontddos.me"
   interval       = 60
   timeout        = 30

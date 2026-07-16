@@ -51,8 +51,8 @@ variable "dockhand_api_token" {
 }
 
 provider "dockhand" {
-  endpoint    = var.dockhand_endpoint
-  api_token    = var.dockhand_api_token
+  endpoint  = var.dockhand_endpoint
+  api_token = var.dockhand_api_token
 }
 
 variable "cloudflare_api_token" {
@@ -82,7 +82,7 @@ provider "uptimekuma" {
   password = var.uptimekuma_password
 }
 
-variable authentik_token {
+variable "authentik_token" {
   type        = string
   description = "description"
   sensitive   = true
@@ -94,17 +94,17 @@ provider "authentik" {
   token = var.authentik_token
 }
 
-variable pm_api_token_id {
-  type  = string
+variable "pm_api_token_id" {
+  type = string
 }
 
-variable pm_api_token_secret {
-  type        = string
-  sensitive   = true
+variable "pm_api_token_secret" {
+  type      = string
+  sensitive = true
 }
 
 provider "proxmox" {
-  pm_api_url = "https://pve-prod-01.internal.dontddos.me:8006/api2/json"
-  pm_api_token_id = var.pm_api_token_id
+  pm_api_url          = "https://pve-prod-01.internal.dontddos.me:8006/api2/json"
+  pm_api_token_id     = var.pm_api_token_id
   pm_api_token_secret = var.pm_api_token_secret
 }

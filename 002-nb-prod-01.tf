@@ -8,20 +8,20 @@ resource "adguard_rewrite" "nb-prod-01_record" {
 resource "dockhand_environment" "nb-prod-01_dockhand_environment" {
   name            = "nb-prod-01"
   connection_type = "direct"
-  host     = "nb-prod-01.internal.dontddos.me"
+  host            = "nb-prod-01.internal.dontddos.me"
 
   protocol        = "https"
   port            = 2376
   tls_skip_verify = false
-  ca_cert     = file("${path.module}/../ansible/docker-keys/nb-prod-01/ca.pem")
-  client_cert = file("${path.module}/../ansible/docker-keys/nb-prod-01/cert.pem")
-  client_key  = file("${path.module}/../ansible/docker-keys/nb-prod-01/key.pem")
+  ca_cert         = file("${path.module}/../ansible/docker-keys/nb-prod-01/ca.pem")
+  client_cert     = file("${path.module}/../ansible/docker-keys/nb-prod-01/cert.pem")
+  client_key      = file("${path.module}/../ansible/docker-keys/nb-prod-01/key.pem")
   icon            = "server"
 }
 
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "nb-prod-01_uptimekuma_monitor" {
-  name     = "NB-Prod-01"
+  name           = "NB-Prod-01"
   hostname       = "nb-prod-01.internal.dontddos.me"
   interval       = 60
   timeout        = 30
@@ -42,5 +42,5 @@ resource "authentik_certificate_key_pair" "nb-prod-01-ca_authentik_key_pair" {
 resource "authentik_certificate_key_pair" "nb-prod-01-client_authentik_key_pair" {
   name             = "nb-prod-01-client"
   certificate_data = file("${path.module}/../ansible/docker-keys/nb-prod-01/cert.pem")
-  key_data = file("${path.module}/../ansible/docker-keys/nb-prod-01/key.pem")
+  key_data         = file("${path.module}/../ansible/docker-keys/nb-prod-01/key.pem")
 }

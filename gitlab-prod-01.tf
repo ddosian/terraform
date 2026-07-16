@@ -1,24 +1,24 @@
 variable "gitlab_client_id" {
-    type        = string
+  type = string
 }
 
 variable "gitlab_client_secret" {
-    type        = string
-    sensitive   = true
+  type      = string
+  sensitive = true
 }
 
 resource "authentik_provider_oauth2" "gitlab_authentik_provider" {
-  name      = "Provider for Gitlab"
-  client_id = var.gitlab_client_id
-  client_secret = var.gitlab_client_secret
+  name               = "Provider for Gitlab"
+  client_id          = var.gitlab_client_id
+  client_secret      = var.gitlab_client_secret
   authorization_flow = data.authentik_flow.explicit-authorization-flow.id
-  invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
-  sub_mode = "user_email"
+  invalidation_flow  = data.authentik_flow.default-provider-invalidation-flow.id
+  sub_mode           = "user_email"
   property_mappings = [
-  data.authentik_property_mapping_provider_scope.email.id,
-  data.authentik_property_mapping_provider_scope.openid.id,
-  data.authentik_property_mapping_provider_scope.profile.id,
-]
+    data.authentik_property_mapping_provider_scope.email.id,
+    data.authentik_property_mapping_provider_scope.openid.id,
+    data.authentik_property_mapping_provider_scope.profile.id,
+  ]
   allowed_redirect_uris = [
     {
       matching_mode = "strict",

@@ -12,20 +12,20 @@ resource "adguard_rewrite" "mon-prod-01_wildcard_record" {
 resource "dockhand_environment" "mon-prod-01_dockhand_environment" {
   name            = "mon-prod-01"
   connection_type = "direct"
-  host     = "mon-prod-01.internal.dontddos.me"
+  host            = "mon-prod-01.internal.dontddos.me"
 
   protocol        = "https"
   port            = 2376
   tls_skip_verify = false
-  ca_cert     = file("${path.module}/../ansible/docker-keys/mon-prod-01/ca.pem")
-  client_cert = file("${path.module}/../ansible/docker-keys/mon-prod-01/cert.pem")
-  client_key  = file("${path.module}/../ansible/docker-keys/mon-prod-01/key.pem")
+  ca_cert         = file("${path.module}/../ansible/docker-keys/mon-prod-01/ca.pem")
+  client_cert     = file("${path.module}/../ansible/docker-keys/mon-prod-01/cert.pem")
+  client_key      = file("${path.module}/../ansible/docker-keys/mon-prod-01/key.pem")
   icon            = "server"
 }
 
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "mon-prod-01_uptimekuma_monitor" {
-  name     = "Mon-Prod-01"
+  name           = "Mon-Prod-01"
   hostname       = "mon-prod-01.internal.dontddos.me"
   interval       = 60
   timeout        = 30
@@ -45,5 +45,5 @@ resource "authentik_certificate_key_pair" "mon-prod-01-ca_authentik_key_pair" {
 resource "authentik_certificate_key_pair" "mon-prod-01-client_authentik_key_pair" {
   name             = "mon-prod-01-client"
   certificate_data = file("${path.module}/../ansible/docker-keys/mon-prod-01/cert.pem")
-  key_data = file("${path.module}/../ansible/docker-keys/mon-prod-01/key.pem")
+  key_data         = file("${path.module}/../ansible/docker-keys/mon-prod-01/key.pem")
 }

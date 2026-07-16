@@ -5,7 +5,7 @@ resource "adguard_rewrite" "nas-prod-01_record" {
 
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "nas-prod-01_uptimekuma_monitor" {
-  name     = "NAS-Prod-01"
+  name           = "NAS-Prod-01"
   hostname       = "nas-prod-01.internal.dontddos.me"
   interval       = 60
   timeout        = 30

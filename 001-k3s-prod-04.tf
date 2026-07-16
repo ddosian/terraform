@@ -6,7 +6,7 @@ resource "adguard_rewrite" "k3s-prod-04_record" {
 
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "k3s-prod-04_uptimekuma_monitor" {
-  name     = "K3s-Prod-04"
+  name           = "K3s-Prod-04"
   hostname       = "k3s-prod-04.internal.dontddos.me"
   interval       = 60
   timeout        = 30

@@ -6,7 +6,7 @@ resource "adguard_rewrite" "fw-prod-01_record" {
 
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "fw-prod-01_uptimekuma_monitor" {
-  name     = "FW-Prod-01"
+  name           = "FW-Prod-01"
   hostname       = "fw-prod-01.internal.dontddos.me"
   interval       = 60
   timeout        = 30

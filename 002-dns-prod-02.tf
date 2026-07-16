@@ -11,20 +11,20 @@ resource "adguard_rewrite" "dns_prod-02_wildcard_record" {
 resource "dockhand_environment" "dns-prod-02_dockhand_environment" {
   name            = "dns-prod-02"
   connection_type = "direct"
-  host     = "dns-prod-02.internal.dontddos.me"
+  host            = "dns-prod-02.internal.dontddos.me"
 
   protocol        = "https"
   port            = 2376
   tls_skip_verify = false
-  ca_cert     = file("${path.module}/../ansible/docker-keys/dns-prod-02/ca.pem")
-  client_cert = file("${path.module}/../ansible/docker-keys/dns-prod-02/cert.pem")
-  client_key  = file("${path.module}/../ansible/docker-keys/dns-prod-02/key.pem")
+  ca_cert         = file("${path.module}/../ansible/docker-keys/dns-prod-02/ca.pem")
+  client_cert     = file("${path.module}/../ansible/docker-keys/dns-prod-02/cert.pem")
+  client_key      = file("${path.module}/../ansible/docker-keys/dns-prod-02/key.pem")
   icon            = "server"
 }
 
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "dns-prod-02_uptimekuma_monitor" {
-  name     = "DNS-Prod-02"
+  name           = "DNS-Prod-02"
   hostname       = "dns-prod-02.internal.dontddos.me"
   interval       = 60
   timeout        = 30
@@ -45,5 +45,5 @@ resource "authentik_certificate_key_pair" "dns-prod-02-ca_authentik_key_pair" {
 resource "authentik_certificate_key_pair" "dns-prod-02-client_authentik_key_pair" {
   name             = "dns-prod-02-client"
   certificate_data = file("${path.module}/../ansible/docker-keys/dns-prod-02/cert.pem")
-  key_data = file("${path.module}/../ansible/docker-keys/dns-prod-02/key.pem")
+  key_data         = file("${path.module}/../ansible/docker-keys/dns-prod-02/key.pem")
 }
