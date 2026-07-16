@@ -32,3 +32,15 @@ resource "uptimekuma_monitor_ping" "pve-prod-03_uptimekuma_monitor" {
   packet_size    = 56
   parent         = uptimekuma_monitor_group.proxmox-ve_monitor_group.id
 }
+
+# Authentik Cert Key-pairs
+resource "authentik_certificate_key_pair" "pve-prod-03-ca_authentik_key_pair" {
+  name             = "pve-prod-03-ca"
+  certificate_data = file("${path.module}/../ansible/docker-keys/pve-prod-03/ca.pem")
+}
+
+resource "authentik_certificate_key_pair" "pve-prod-03-client_authentik_key_pair" {
+  name             = "pve-prod-03-client"
+  certificate_data = file("${path.module}/../ansible/docker-keys/pve-prod-03/cert.pem")
+  key_data = file("${path.module}/../ansible/docker-keys/pve-prod-03/key.pem")
+}

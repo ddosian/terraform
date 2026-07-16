@@ -52,3 +52,15 @@ resource "uptimekuma_monitor_ping" "gl-prod-01_uptimekuma_monitor" {
   active         = true
   packet_size    = 56
 }
+
+# Authentik Cert Key-pairs
+resource "authentik_certificate_key_pair" "gl-prod-01-ca_authentik_key_pair" {
+  name             = "gl-prod-01-ca"
+  certificate_data = file("${path.module}/../ansible/docker-keys/gl-prod-01/ca.pem")
+}
+
+resource "authentik_certificate_key_pair" "gl-prod-01-client_authentik_key_pair" {
+  name             = "gl-prod-01-client"
+  certificate_data = file("${path.module}/../ansible/docker-keys/gl-prod-01/cert.pem")
+  key_data = file("${path.module}/../ansible/docker-keys/gl-prod-01/key.pem")
+}

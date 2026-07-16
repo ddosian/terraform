@@ -35,3 +35,15 @@ resource "uptimekuma_monitor_ping" "dns-prod-02_uptimekuma_monitor" {
   packet_size    = 56
   parent         = uptimekuma_monitor_group.networking_monitor_group.id
 }
+
+# Authentik Cert Key-pairs
+resource "authentik_certificate_key_pair" "dns-prod-02-ca_authentik_key_pair" {
+  name             = "dns-prod-02-ca"
+  certificate_data = file("${path.module}/../ansible/docker-keys/dns-prod-02/ca.pem")
+}
+
+resource "authentik_certificate_key_pair" "dns-prod-02-client_authentik_key_pair" {
+  name             = "dns-prod-02-client"
+  certificate_data = file("${path.module}/../ansible/docker-keys/dns-prod-02/cert.pem")
+  key_data = file("${path.module}/../ansible/docker-keys/dns-prod-02/key.pem")
+}

@@ -29,3 +29,15 @@ resource "cloudflare_dns_record" "calagopus-prod-01_cloudflare_record" {
   content = "vps-prod-01.dontddos.me"
   proxied = false
 }
+
+# Authentik Cert Key-pairs
+resource "authentik_certificate_key_pair" "calagopus-prod-01-ca_authentik_key_pair" {
+  name             = "calagopus-prod-01-ca"
+  certificate_data = file("${path.module}/../ansible/docker-keys/calagopus-prod-01/ca.pem")
+}
+
+resource "authentik_certificate_key_pair" "calagopus-prod-01-client_authentik_key_pair" {
+  name             = "calagopus-prod-01-client"
+  certificate_data = file("${path.module}/../ansible/docker-keys/calagopus-prod-01/cert.pem")
+  key_data = file("${path.module}/../ansible/docker-keys/calagopus-prod-01/key.pem")
+}
