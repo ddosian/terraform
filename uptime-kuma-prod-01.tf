@@ -31,3 +31,15 @@ resource "uptimekuma_monitor_group" "networking_monitor_group" {
   name   = "Networking"
   active = true
 }
+
+resource "uptimekuma_monitor_group" "routing_monitor_group" {
+  name   = "Routing"
+  parent = uptimekuma_monitor_group.networking_monitor_group.id
+  active = true
+}
+
+resource "uptimekuma_monitor_group" "dns_monitor_group" {
+  name   = "DNS"
+  parent = uptimekuma_monitor_group.networking_monitor_group.id
+  active = true
+}
