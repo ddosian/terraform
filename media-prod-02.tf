@@ -36,6 +36,9 @@ resource "uptimekuma_monitor_ping" "media-prod-02_uptimekuma_monitor" {
 resource "authentik_certificate_key_pair" "media-prod-02-ca_authentik_key_pair" {
   name             = "media-prod-02-ca"
   certificate_data = file("${path.module}/../ansible/docker-keys/media-prod-02/ca.pem")
+  lifecycle {
+    ignore_changes = [key_data]
+  }
 }
 
 resource "authentik_certificate_key_pair" "media-prod-02-client_authentik_key_pair" {

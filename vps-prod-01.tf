@@ -41,6 +41,9 @@ resource "uptimekuma_monitor_ping" "vps-prod-01_uptimekuma_monitor" {
 resource "authentik_certificate_key_pair" "vps-prod-01-ca_authentik_key_pair" {
   name             = "vps-prod-01-ca"
   certificate_data = file("${path.module}/../ansible/docker-keys/vps-prod-01/ca.pem")
+  lifecycle {
+    ignore_changes = [key_data]
+  }
 }
 
 resource "authentik_certificate_key_pair" "vps-prod-01-client_authentik_key_pair" {

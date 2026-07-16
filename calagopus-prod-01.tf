@@ -34,6 +34,9 @@ resource "cloudflare_dns_record" "calagopus-prod-01_cloudflare_record" {
 resource "authentik_certificate_key_pair" "calagopus-prod-01-ca_authentik_key_pair" {
   name             = "calagopus-prod-01-ca"
   certificate_data = file("${path.module}/../ansible/docker-keys/calagopus-prod-01/ca.pem")
+  lifecycle {
+    ignore_changes = [key_data]
+  }
 }
 
 resource "authentik_certificate_key_pair" "calagopus-prod-01-client_authentik_key_pair" {

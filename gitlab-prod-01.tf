@@ -21,8 +21,9 @@ resource "authentik_provider_oauth2" "gitlab_authentik_provider" {
   ]
   allowed_redirect_uris = [
     {
-      matching_mode = "strict",
-      url           = "https://gitlab.dontddos.me/users/auth/openid_connect/callback",
+      matching_mode     = "strict",
+      redirect_uri_type = "authorization",
+      url               = "https://gitlab.dontddos.me/users/auth/openid_connect/callback",
     }
   ]
   grant_types = [

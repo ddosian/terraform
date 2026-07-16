@@ -34,6 +34,10 @@ resource "cloudflare_dns_record" "srv_matrix_fed_cloudflare_record" {
     target   = "matrix.dontddos.me"
     weight   = 5
   }
+
+  lifecycle {
+    ignore_changes = [priority]
+  }
 }
 
 resource "cloudflare_dns_record" "srv_matrix_cloudflare_record" {
@@ -48,5 +52,9 @@ resource "cloudflare_dns_record" "srv_matrix_cloudflare_record" {
     priority = 10
     target   = "matrix.dontddos.me"
     weight   = 5
+  }
+
+  lifecycle {
+    ignore_changes = [priority]
   }
 }

@@ -36,6 +36,9 @@ resource "uptimekuma_monitor_ping" "gl-runner-prod-01_uptimekuma_monitor" {
 resource "authentik_certificate_key_pair" "gl-runner-prod-01-ca_authentik_key_pair" {
   name             = "gl-runner-prod-01-ca"
   certificate_data = file("${path.module}/../ansible/docker-keys/gl-runner-prod-01/ca.pem")
+  lifecycle {
+    ignore_changes = [key_data]
+  }
 }
 
 resource "authentik_certificate_key_pair" "gl-runner-prod-01-client_authentik_key_pair" {
@@ -100,4 +103,12 @@ resource "proxmox_vm_qemu" "gl-runner-prod-01_proxmox_vm" {
   sshkeys    = <<EOF
   ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINQTU6Zw3pqHCDS+MUBXVEDPeDdtstFpK+8SVXN71QG/ admin@dontddos.me Jun 2026
   EOF
+
+  lifecycle {
+    ignore_changes = [
+      bootdisk,
+      vm_state,
+      startup_shutdown,
+    ]
+  }
 }

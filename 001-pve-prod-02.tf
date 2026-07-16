@@ -37,6 +37,9 @@ resource "uptimekuma_monitor_ping" "pve-prod-02_uptimekuma_monitor" {
 resource "authentik_certificate_key_pair" "pve-prod-02-ca_authentik_key_pair" {
   name             = "pve-prod-02-ca"
   certificate_data = file("${path.module}/../ansible/docker-keys/pve-prod-02/ca.pem")
+  lifecycle {
+    ignore_changes = [key_data]
+  }
 }
 
 resource "authentik_certificate_key_pair" "pve-prod-02-client_authentik_key_pair" {

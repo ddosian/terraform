@@ -15,8 +15,9 @@ resource "authentik_provider_oauth2" "dockhand-prod-01_authentik_provider" {
   invalidation_flow  = data.authentik_flow.default-provider-invalidation-flow.id
   allowed_redirect_uris = [
     {
-      matching_mode = "strict",
-      url           = "https://dockhand-prod-01.k3s-cl-prod-02.internal.dontddos.me/api/auth/oidc/callback",
+      matching_mode     = "strict",
+      redirect_uri_type = "authorization",
+      url               = "https://dockhand-prod-01.k3s-cl-prod-02.internal.dontddos.me/api/auth/oidc/callback",
     }
   ]
   grant_types = [
