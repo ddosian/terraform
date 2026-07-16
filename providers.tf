@@ -20,6 +20,10 @@ terraform {
       source  = "goauthentik/authentik"
       version = "2026.5.0"
     }
+    proxmox = {
+      source  = "Telmate/proxmox"
+      version = "3.0.2-rc08"
+    }
   }
 }
 
@@ -88,4 +92,19 @@ variable authentik_token {
 provider "authentik" {
   url   = "https://auth.dontddos.me"
   token = var.authentik_token
+}
+
+variable pm_api_token_id {
+  type  = string
+}
+
+variable pm_api_token_secret {
+  type        = string
+  sensitive   = true
+}
+
+provider "proxmox" {
+  pm_api_url = "https://pve-prod-01.internal.dontddos.me:8006/api2/json"
+  pm_api_token_id = var.pm_api_token_id
+  pm_api_token_secret = var.pm_api_token_secret
 }
