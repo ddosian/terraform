@@ -13,6 +13,11 @@ resource "authentik_provider_oauth2" "dockhand-prod-01_authentik_provider" {
   client_secret      = var.dockhand_client_secret
   authorization_flow = data.authentik_flow.explicit-authorization-flow.id
   invalidation_flow  = data.authentik_flow.default-provider-invalidation-flow.id
+  property_mappings = [
+    data.authentik_property_mapping_provider_scope.email.id,
+    data.authentik_property_mapping_provider_scope.openid.id,
+    data.authentik_property_mapping_provider_scope.profile.id,
+  ]
   allowed_redirect_uris = [
     {
       matching_mode     = "strict",
