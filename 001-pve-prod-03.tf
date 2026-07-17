@@ -3,6 +3,10 @@ resource "adguard_rewrite" "pve-prod-03_record" {
   domain = "pve-prod-03.internal.dontddos.me"
   answer = "10.77.0.13"
 }
+resource "adguard_rewrite" "pve-prod-03_wildcard_record" {
+  domain = "*.pve-prod-03.internal.dontddos.me"
+  answer = "pve-prod-03.internal.dontddos.me"
+}
 
 # Dockhand Environment
 resource "dockhand_environment" "pve-prod-03_dockhand_environment" {
@@ -46,4 +50,48 @@ resource "authentik_certificate_key_pair" "pve-prod-03-client_authentik_key_pair
   name             = "pve-prod-03-client"
   certificate_data = file("${path.module}/../ansible/docker-keys/pve-prod-03/cert.pem")
   key_data         = file("${path.module}/../ansible/docker-keys/pve-prod-03/key.pem")
+}
+
+# Authentik Service Connection and Outpost
+resource "authentik_service_connection_docker" "pve-prod-03_authentik_service_connection" {
+  name               = "pve-prod-03"
+  url                = "https://pve-prod-03.internal.dontddos.me:2376"
+  tls_verification   = authentik_certificate_key_pair.pve-prod-03-ca_authentik_key_pair.id
+  tls_authentication = authentik_certificate_key_pair.pve-prod-03-client_authentik_key_pair.id
+}
+
+resource "authentik_outpost" "pve-prod-03_authentik_outpost" {
+  name = "pve-prod-03"
+  protocol_providers = [
+    authentik_provider_proxy.traefik-pve-prod-03_authentik_provider.id
+  ]
+  config = jsonencode({
+    log_level                        = "info"
+    docker_labels                    = null
+    authentik_host                   = "https://auth.dontddos.me/"
+    docker_network                   = "frontend"
+    container_image                  = null
+    docker_map_ports                 = true
+    refresh_interval                 = "minutes=5"
+    kubernetes_replicas              = 1
+    kubernetes_namespace             = "authentik"
+    authentik_host_browser           = ""
+    object_naming_template           = "ak-outpost-%(name)s"
+    authentik_host_insecure          = false
+    kubernetes_json_patches          = null
+    kubernetes_service_type          = "ClusterIP"
+    kubernetes_ingress_path_type     = null
+    kubernetes_image_pull_secrets    = []
+    kubernetes_ingress_class_name    = null
+    kubernetes_disable_x509_strict   = false
+    kubernetes_disabled_components   = []
+    kubernetes_ingress_annotations   = {}
+    kubernetes_ingress_secret_name   = "authentik-outpost-tls"
+    kubernetes_httproute_annotations = {}
+    kubernetes_httproute_parent_refs = []
+  })
+  service_connection = authentik_service_connection_docker.pve-prod-03_authentik_service_connection.id
+  lifecycle {
+    ignore_changes = [protocol_providers]
+  }
 }
