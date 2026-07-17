@@ -90,7 +90,7 @@ variable "authentik_token" {
 
 
 provider "authentik" {
-  url   = "https://auth.dontddos.me"
+  url   = "https://authentik-prod-01.k3s-cl-prod-01.internal.dontddos.me"
   token = var.authentik_token
 }
 
