@@ -7,7 +7,7 @@ resource "authentik_provider_proxy" "traefik-pve-prod-02_authentik_provider" {
 }
 
 resource "authentik_application" "traefik-pve-prod-02_authentik_application" {
-  name              = "Traefik (pve-prod-02)"
+  name              = "Traefik (PVE-Prod-02)"
   slug              = "traefik-pve-prod-02"
   protocol_provider = authentik_provider_proxy.traefik-pve-prod-02_authentik_provider.id
   meta_icon         = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/traefik.svg"
