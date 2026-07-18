@@ -102,7 +102,7 @@ resource "netbox_device" "pve-prod-02_netbox_device" {
   role_id        = netbox_device_role.virtualization.id
   site_id        = netbox_site.home.id
   rack_id        = netbox_rack.main.id
-  rack_position = 8
-  rack_face           = "front"
+  rack_position  = 8
+  rack_face      = "front"
   status         = "active"
 }
