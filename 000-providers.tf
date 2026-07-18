@@ -24,6 +24,10 @@ terraform {
       source  = "Telmate/proxmox"
       version = "3.0.2-rc08"
     }
+    netbox = {
+      source  = "e-breuninger/netbox"
+      version = "5.7.0"
+    }
   }
 }
 
@@ -107,4 +111,15 @@ provider "proxmox" {
   pm_api_url          = "https://pve-prod-01.internal.dontddos.me:8006/api2/json"
   pm_api_token_id     = var.pm_api_token_id
   pm_api_token_secret = var.pm_api_token_secret
+}
+
+variable "netbox_api_token" {
+  description = "The API token for the Netbox API"
+  type        = string
+  sensitive   = true
+}
+
+provider "netbox" {
+  server_url = "https://netbox-prod-01.k3s-cl-prod-02.internal.dontddos.me"
+  api_token  = var.netbox_api_token
 }
