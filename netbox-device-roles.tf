@@ -3,3 +3,9 @@ resource "netbox_device_role" "virtualization" {
   name      = "Virtualization"
   vm_role   = true
 }
+
+resource "netbox_device_role" "switching" {
+  color_hex = "444400"
+  name      = "Switching"
+  vm_role   = false
+}
