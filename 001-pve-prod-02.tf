@@ -95,3 +95,14 @@ resource "authentik_outpost" "pve-prod-02_authentik_outpost" {
     ignore_changes = [protocol_providers]
   }
 }
+
+resource "netbox_device" "pve-prod-02_netbox_device" {
+  name           = "PVE-Prod-02"
+  device_type_id = netbox_device_type.hpe_proliant_dl360p_gen8.id
+  role_id        = netbox_device_role.virtualization.id
+  site_id        = netbox_site.home.id
+  rack_id        = netbox_rack.main.id
+  rack_position = 8
+  rack_face           = "front"
+  status         = "active"
+}
