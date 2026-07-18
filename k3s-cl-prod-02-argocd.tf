@@ -38,6 +38,7 @@ resource "authentik_provider_oauth2" "k3s-cl-prod-02_argocd_authentik_provider" 
     "password",
     "urn:ietf:params:oauth:grant-type:device_code",
   ]
+  signing_key = data.authentik_certificate_key_pair.authentik_self_signed_cert.id
 }
 
 resource "authentik_application" "k3s-cl-prod-02_argocd_authentik_application" {
