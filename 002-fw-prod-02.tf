@@ -7,7 +7,7 @@ resource "adguard_rewrite" "fw-prod-02_record" {
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "fw-prod-02_uptimekuma_monitor" {
   name           = "FW-Prod-02"
-  hostname       = "fw-prod-02.internal.dontddos.me"
+  hostname       = "10.81.0.2"
   interval       = 60
   timeout        = 30
   max_retries    = 2
