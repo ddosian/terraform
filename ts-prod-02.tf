@@ -13,6 +13,7 @@ resource "uptimekuma_monitor_ping" "ts-prod-02_uptimekuma_monitor" {
   upside_down    = false
   active         = true
   packet_size    = 56
+  parent         = uptimekuma_monitor_group.routing_monitor_group.id
 }
 
 variable "ts-prod-02_password" {
