@@ -22,7 +22,7 @@ terraform {
     }
     proxmox = {
       source  = "Telmate/proxmox"
-      version = "3.0.2-rc08"
+      version = "3.0.2-rc07"
     }
     netbox = {
       source  = "e-breuninger/netbox"
