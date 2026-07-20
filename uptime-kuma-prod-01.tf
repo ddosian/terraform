@@ -15,21 +15,9 @@ resource "uptimekuma_monitor_group" "k3s-cl-prod-01_monitor_group" {
   active = true
 }
 
-resource "uptimekuma_monitor_group" "k3s-cl-prod-01_kube_api" {
-  name   = "K3s-Cl-Prod-01 (Kube API)"
-  parent = uptimekuma_monitor_group.k3s-cl-prod-01_monitor_group.id
-  active = true
-}
-
 resource "uptimekuma_monitor_group" "k3s-cl-prod-02_monitor_group" {
   name   = "K3s-Cl-Prod-02"
   parent = uptimekuma_monitor_group.kubernetes_monitor_group.id
-  active = true
-}
-
-resource "uptimekuma_monitor_group" "k3s-cl-prod-02_kube_api" {
-  name   = "K3s-Cl-Prod-02 (Kube API)"
-  parent = uptimekuma_monitor_group.k3s-cl-prod-02_monitor_group.id
   active = true
 }
 
