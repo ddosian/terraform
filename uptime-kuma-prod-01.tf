@@ -61,3 +61,14 @@ resource "uptimekuma_monitor_group" "vms_monitor_group" {
   parent = uptimekuma_monitor_group.infrastructure_monitor_group.id
   active = true
 }
+
+resource "uptimekuma_monitor_group" "services" {
+  name   = "Services"
+  active = true
+}
+
+resource "uptimekuma_monitor_group" "media" {
+  name   = "Media"
+  parent = uptimekuma_monitor_group.services.id
+  active = true
+}
