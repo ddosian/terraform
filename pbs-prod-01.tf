@@ -14,6 +14,7 @@ resource "uptimekuma_monitor_ping" "pbs-prod-01_uptimekuma_monitor" {
   upside_down    = false
   active         = true
   packet_size    = 56
+  parent         = uptimekuma_monitor_group.storage_monitor_group.id
 }
 
 resource "authentik_provider_oauth2" "pbs-prod-01_authentik_provider" {
