@@ -49,3 +49,9 @@ resource "uptimekuma_monitor_group" "storage_monitor_group" {
   parent = uptimekuma_monitor_group.infrastructure_monitor_group.id
   active = true
 }
+
+resource "uptimekuma_monitor_group" "edge_monitor_group" {
+  name   = "Edge"
+  parent = uptimekuma_monitor_group.infrastructure_monitor_group.id
+  active = true
+}
