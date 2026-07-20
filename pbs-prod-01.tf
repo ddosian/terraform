@@ -23,7 +23,7 @@ resource "authentik_provider_oauth2" "pbs-prod-01_authentik_provider" {
   authorization_flow = data.authentik_flow.explicit-authorization-flow.id
   invalidation_flow  = data.authentik_flow.default-provider-invalidation-flow.id
   sub_mode           = "user_email"
-  signing_key = data.authentik_certificate_key_pair.authentik_self_signed_cert.id
+  signing_key        = data.authentik_certificate_key_pair.authentik_self_signed_cert.id
   property_mappings = [
     data.authentik_property_mapping_provider_scope.email.id,
     data.authentik_property_mapping_provider_scope.openid.id,
