@@ -30,6 +30,7 @@ resource "uptimekuma_monitor_ping" "media-prod-02_uptimekuma_monitor" {
   upside_down    = false
   active         = true
   packet_size    = 56
+  parent         = uptimekuma_monitor_group.vms_monitor_group.id
 }
 
 # Authentik Cert Key-pairs
