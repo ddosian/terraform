@@ -9,6 +9,17 @@ resource "adguard_rewrite" "immich-prod-01_wildcard_record" {
   answer = "immich-prod-01.internal.dontddos.me"
 }
 
+# Cloudflare DNS records
+resource "cloudflare_dns_record" "immich-prod-01_cloudflare_record" {
+  zone_id = "310137280dfff667dd7414c94ef3a938"
+  name    = "immich.dontddos.me"
+  ttl     = 1
+  type    = "CNAME"
+  comment = "Managed by Terraform"
+  content = "vps-prod-01.dontddos.me"
+  proxied = false
+}
+
 # Dockhand Environment
 resource "dockhand_environment" "immich-prod-01_dockhand_environment" {
   name            = "immich-prod-01"
