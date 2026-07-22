@@ -174,3 +174,49 @@ resource "proxmox_vm_qemu" "immich-prod-01_proxmox_vm" {
     ]
   }
 }
+
+resource "authentik_provider_oauth2" "immich-prod-01_authentik_provider" {
+  name               = "Provider for Immich-Prod-01"
+  client_id          = "immichprod01"
+  authorization_flow = data.authentik_flow.explicit-authorization-flow.id
+  invalidation_flow  = data.authentik_flow.default-provider-invalidation-flow.id
+  property_mappings = [
+    data.authentik_property_mapping_provider_scope.email.id,
+    data.authentik_property_mapping_provider_scope.openid.id,
+    data.authentik_property_mapping_provider_scope.profile.id,
+  ]
+  allowed_redirect_uris = [
+    {
+      matching_mode     = "strict",
+      redirect_uri_type = "authorization",
+      url               = "app.immich:///oauth-callback",
+    },
+    {
+      matching_mode     = "strict",
+      redirect_uri_type = "authorization",
+      url               = "https://immich.dontddos.me/auth/login",
+    },
+    {
+      matching_mode     = "strict",
+      redirect_uri_type = "authorization",
+      url               = "https://immich.dontddos.me/user-settings",
+    }
+  ]
+  grant_types = [
+    "authorization_code",
+    "implicit",
+    "hybrid",
+    "refresh_token",
+    "client_credentials",
+    "password",
+    "urn:ietf:params:oauth:grant-type:device_code",
+  ]
+  signing_key = data.authentik_certificate_key_pair.authentik_self_signed_cert.id
+}
+
+resource "authentik_application" "immich-prod-01_authentik_application" {
+  name              = "Immich-Prod-01"
+  slug              = "immich"
+  protocol_provider = authentik_provider_oauth2.immich-prod-01_authentik_provider.id
+  meta_icon         = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/immich.svg"
+}
