@@ -28,98 +28,69 @@ terraform {
       source  = "e-breuninger/netbox"
       version = "5.7.0"
     }
+    infisical = {
+      source = "infisical/infisical"
+      version = "0.19.6"
+    }
   }
 }
 
-variable "adguard_password" {
-  description = "The password for the AdGuard Home instance"
-  type        = string
-  sensitive   = true
-}
 
 provider "adguard" {
   host     = "adguard-home-prod-01.dns-prod-01.internal.dontddos.me"
   username = "ddos"
-  password = var.adguard_password
-}
-
-variable "dockhand_endpoint" {
-  description = "The endpoint for the Dockhand API"
-  type        = string
-}
-
-variable "dockhand_api_token" {
-  description = "The API token for the Dockhand API"
-  type        = string
-  sensitive   = true
+  password = local.adguard_password
 }
 
 provider "dockhand" {
-  endpoint  = var.dockhand_endpoint
-  api_token = var.dockhand_api_token
-}
-
-variable "cloudflare_api_token" {
-  description = "The API token for the Cloudflare API"
-  type        = string
-  sensitive   = true
+  endpoint  = local.dockhand_endpoint
+  api_token = local.dockhand_api_token
 }
 
 provider "cloudflare" {
-  api_token = var.cloudflare_api_token
-}
-
-variable "uptimekuma_username" {
-  description = "The username for the Uptime Kuma instance"
-  type        = string
-}
-
-variable "uptimekuma_password" {
-  description = "The password for the Uptime Kuma instance"
-  type        = string
-  sensitive   = true
+  api_token = local.cloudflare_api_token
 }
 
 provider "uptimekuma" {
   endpoint = "https://uptime-kuma-prod-01.k3s-cl-prod-02.internal.dontddos.me"
-  username = var.uptimekuma_username
-  password = var.uptimekuma_password
+  username = local.uptimekuma_username
+  password = local.uptimekuma_password
 }
-
-variable "authentik_token" {
-  type        = string
-  description = "description"
-  sensitive   = true
-}
-
 
 provider "authentik" {
   url   = "https://authentik-prod-01.k3s-cl-prod-01.internal.dontddos.me"
-  token = var.authentik_token
-}
-
-variable "pm_api_token_id" {
-  type = string
-}
-
-variable "pm_api_token_secret" {
-  type      = string
-  sensitive = true
+  token = local.authentik_token
 }
 
 provider "proxmox" {
   pm_api_url          = "https://pve-prod-01.internal.dontddos.me:8006/api2/json"
-  pm_api_token_id     = var.pm_api_token_id
-  pm_api_token_secret = var.pm_api_token_secret
-}
-
-variable "netbox_api_token" {
-  description = "The API token for the Netbox API"
-  type        = string
-  sensitive   = true
+  pm_api_token_id     = local.pm_api_token_id
+  pm_api_token_secret = local.pm_api_token_secret
 }
 
 provider "netbox" {
   server_url = "https://netbox-prod-01.k3s-cl-prod-02.internal.dontddos.me"
-  api_token  = var.netbox_api_token
+  api_token  = local.netbox_api_token
+}
+
+variable "infisical_client_id" {
+  type        = string
+  description = "Infisical client ID"
+}
+
+variable "infisical_client_secret" {
+  type        = string
+  description = "Infisical client secret"
+  sensitive   = true
+}
+
+provider "infisical" {
+  host = "https://infisical-prod-01.infisical-prod-01.internal.dontddos.me"
+  auth = {
+    organization_slug = "homelab-f-bse"
+    universal = {
+      client_id     = var.infisical_client_id
+      client_secret = var.infisical_client_secret
+    }
+  }
 }

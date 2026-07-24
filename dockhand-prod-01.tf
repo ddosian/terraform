@@ -1,16 +1,7 @@
-variable "dockhand_client_id" {
-  type = string
-}
-
-variable "dockhand_client_secret" {
-  type      = string
-  sensitive = true
-}
-
 resource "authentik_provider_oauth2" "dockhand-prod-01_authentik_provider" {
   name               = "Provider for Dockhand-Prod-01"
-  client_id          = var.dockhand_client_id
-  client_secret      = var.dockhand_client_secret
+  client_id          = local.dockhand_client_id
+  client_secret      = local.dockhand_client_secret
   authorization_flow = data.authentik_flow.explicit-authorization-flow.id
   invalidation_flow  = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [

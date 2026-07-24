@@ -7,12 +7,6 @@ resource "adguard_rewrite" "ts-prod-01_wildcard_record" {
   answer = "ts-prod-01.internal.dontddos.me"
 }
 
-variable "ts-prod-01_password" {
-  description = "Password for the ts-prod-01 LXC container"
-  type        = string
-  sensitive   = true
-}
-
 resource "uptimekuma_monitor_ping" "ts-prod-01_uptimekuma_monitor" {
   name           = "TS-Prod-01"
   hostname       = "ts-prod-01.internal.dontddos.me"
@@ -31,7 +25,7 @@ resource "proxmox_lxc_guest" "ts-prod-01" {
   power_state  = "running"
   target_node  = "pve-prod-01"
   unprivileged = true
-  password     = var.ts-prod-01_password
+  password     = local.ts-prod-01_password
   template {
     file    = "debian-13-standard_13.1-2_amd64.tar.zst"
     storage = "local"

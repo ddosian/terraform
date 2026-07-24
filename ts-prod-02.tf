@@ -20,18 +20,12 @@ resource "uptimekuma_monitor_ping" "ts-prod-02_uptimekuma_monitor" {
   parent         = uptimekuma_monitor_group.routing_monitor_group.id
 }
 
-variable "ts-prod-02_password" {
-  description = "Password for the ts-prod-02 LXC container"
-  type        = string
-  sensitive   = true
-}
-
 resource "proxmox_lxc_guest" "ts-prod-02" {
   name         = "ts-prod-02"
   power_state  = "running"
   target_node  = "pve-prod-02"
   unprivileged = true
-  password     = var.ts-prod-02_password
+  password     = local.ts-prod-02_password
   template {
     file    = "debian-13-standard_13.1-2_amd64.tar.zst"
     storage = "local"
