@@ -72,3 +72,9 @@ resource "uptimekuma_monitor_group" "media" {
   parent = uptimekuma_monitor_group.services.id
   active = true
 }
+
+resource "uptimekuma_monitor_group" "git" {
+  name   = "Git"
+  parent = uptimekuma_monitor_group.services.id
+  active = true
+}

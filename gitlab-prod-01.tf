@@ -44,3 +44,12 @@ resource "authentik_application" "Gitlab_authentik_application" {
   meta_icon         = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/gitlab.svg"
   group             = "Infrastructure"
 }
+
+resource "uptimekuma_monitor_http" "gitlab-prod-01" {
+  name     = "GitLab-Prod-01"
+  url      = "https://gitlab.dontddos.me"
+  interval = 60
+  timeout  = 30
+  active   = true
+  parent   = uptimekuma_monitor_group.git.id
+}
