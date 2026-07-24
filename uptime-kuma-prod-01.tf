@@ -44,6 +44,12 @@ resource "uptimekuma_monitor_group" "dns_monitor_group" {
   active = true
 }
 
+resource "uptimekuma_monitor_group" "traefik_monitor_group" {
+  name   = "Traefik"
+  parent = uptimekuma_monitor_group.networking_monitor_group.id
+  active = true
+}
+
 resource "uptimekuma_monitor_group" "storage_monitor_group" {
   name   = "Storage"
   parent = uptimekuma_monitor_group.infrastructure_monitor_group.id
