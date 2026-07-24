@@ -13,9 +13,9 @@ resource "dockhand_environment" "media-prod-02_dockhand_environment" {
   protocol        = "https"
   port            = 2376
   tls_skip_verify = false
-  ca_cert         = file("${path.module}/../ansible/docker-keys/media-prod-02/ca.pem")
-  client_cert     = file("${path.module}/../ansible/docker-keys/media-prod-02/cert.pem")
-  client_key      = file("${path.module}/../ansible/docker-keys/media-prod-02/key.pem")
+  ca_cert         = local.media-prod-02_ca
+  client_cert     = local.media-prod-02_cert
+  client_key      = local.media-prod-02_key
   icon            = "server"
 }
 
@@ -36,7 +36,7 @@ resource "uptimekuma_monitor_ping" "media-prod-02_uptimekuma_monitor" {
 # Authentik Cert Key-pairs
 resource "authentik_certificate_key_pair" "media-prod-02-ca_authentik_key_pair" {
   name             = "media-prod-02-ca"
-  certificate_data = file("${path.module}/../ansible/docker-keys/media-prod-02/ca.pem")
+  certificate_data = local.media-prod-02_ca
   lifecycle {
     ignore_changes = [key_data]
   }
@@ -44,8 +44,8 @@ resource "authentik_certificate_key_pair" "media-prod-02-ca_authentik_key_pair" 
 
 resource "authentik_certificate_key_pair" "media-prod-02-client_authentik_key_pair" {
   name             = "media-prod-02-client"
-  certificate_data = file("${path.module}/../ansible/docker-keys/media-prod-02/cert.pem")
-  key_data         = file("${path.module}/../ansible/docker-keys/media-prod-02/key.pem")
+  certificate_data = local.media-prod-02_cert
+  key_data         = local.media-prod-02_key
 }
 
 # Authentik Service Connection and Outpost

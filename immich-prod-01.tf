@@ -29,9 +29,9 @@ resource "dockhand_environment" "immich-prod-01_dockhand_environment" {
   protocol        = "https"
   port            = 2376
   tls_skip_verify = false
-  ca_cert         = file("${path.module}/../ansible/docker-keys/immich-prod-01/ca.pem")
-  client_cert     = file("${path.module}/../ansible/docker-keys/immich-prod-01/cert.pem")
-  client_key      = file("${path.module}/../ansible/docker-keys/immich-prod-01/key.pem")
+  ca_cert         = local.immich-prod-01_ca
+  client_cert     = local.immich-prod-01_cert
+  client_key      = local.immich-prod-01_key
   icon            = "server"
 }
 
@@ -52,7 +52,7 @@ resource "uptimekuma_monitor_ping" "immich-prod-01_uptimekuma_monitor" {
 # Authentik Cert Key-pairs
 resource "authentik_certificate_key_pair" "immich-prod-01-ca_authentik_key_pair" {
   name             = "immich-prod-01-ca"
-  certificate_data = file("${path.module}/../ansible/docker-keys/immich-prod-01/ca.pem")
+  certificate_data = local.immich-prod-01_ca
   lifecycle {
     ignore_changes = [key_data]
   }
@@ -60,8 +60,8 @@ resource "authentik_certificate_key_pair" "immich-prod-01-ca_authentik_key_pair"
 
 resource "authentik_certificate_key_pair" "immich-prod-01-client_authentik_key_pair" {
   name             = "immich-prod-01-client"
-  certificate_data = file("${path.module}/../ansible/docker-keys/immich-prod-01/cert.pem")
-  key_data         = file("${path.module}/../ansible/docker-keys/immich-prod-01/key.pem")
+  certificate_data = local.immich-prod-01_cert
+  key_data         = local.immich-prod-01_key
 }
 
 # Authentik Service Connection and Outpost
