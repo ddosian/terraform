@@ -35,7 +35,7 @@ resource "proxmox_lxc_guest" "ts-prod-02" {
   }
   features {
     unprivileged {
-      keyctl = true
+      keyctl  = true
       nesting = true
     }
   }
