@@ -57,7 +57,7 @@ resource "proxmox_vm_qemu" "infisical-prod-01_proxmox_vm" {
   }
 
   os_type    = "cloud-init"
-  ipconfig0  = "ip=10.77.1.121/16,gw=10.78.0.3"
+  ipconfig0  = "ip=10.77.1.121/16,gw=10.77.0.3"
   nameserver = "10.77.1.103"
   ciuser     = "ddos"
   sshkeys    = <<EOF
