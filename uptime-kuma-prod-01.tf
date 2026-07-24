@@ -96,6 +96,10 @@ resource "uptimekuma_status_page" "homelab" {
   slug      = "homelab-status"
   published = true
 
+  domain_name_list = [
+    "status.dontddos.me"
+  ]
+
   public_group_list = [
     {
       name = "K3s-Cl-Prod-01"
