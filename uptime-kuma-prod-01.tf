@@ -91,10 +91,12 @@ resource "uptimekuma_monitor_group" "monitoring" {
   active = true
 }
 
-resource "uptimekuma_status_page" "homelab" {
-  title     = "Homelab Status"
-  slug      = "homelab-status"
+resource "uptimekuma_status_page" "public" {
+  title     = "DontDDoS Status Page"
+  slug      = "public"
   published = true
+
+  theme = "dark"
 
   domain_name_list = [
     "status.dontddos.me"
