@@ -97,6 +97,7 @@ resource "uptimekuma_status_page" "public" {
   published = true
 
   theme = "dark"
+  show_powered_by = false
 
   domain_name_list = [
     "status.dontddos.me"
