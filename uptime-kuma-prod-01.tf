@@ -84,3 +84,9 @@ resource "uptimekuma_monitor_group" "git" {
   parent = uptimekuma_monitor_group.services.id
   active = true
 }
+
+resource "uptimekuma_monitor_group" "monitoring" {
+  name   = "Monitoring"
+  parent = uptimekuma_monitor_group.services.id
+  active = true
+}
