@@ -106,7 +106,7 @@ resource "proxmox_vm_qemu" "infisical-prod-01_proxmox_vm" {
   agent       = 1
   clone       = "debian-13"
 
-  memory = 4096
+  memory = 8192
 
   cpu {
     cores   = 4
