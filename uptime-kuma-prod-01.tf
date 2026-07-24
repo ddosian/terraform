@@ -96,7 +96,7 @@ resource "uptimekuma_status_page" "public" {
   slug      = "public"
   published = true
 
-  theme = "dark"
+  theme           = "dark"
   show_powered_by = false
 
   domain_name_list = [

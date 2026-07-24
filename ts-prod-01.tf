@@ -72,7 +72,7 @@ resource "dockhand_environment" "ts-prod-01_dockhand_environment" {
   tls_skip_verify = false
   ca_cert         = local.ts-prod-01_ca
   client_cert     = local.ts-prod-01_cert
-  client_key      = local.ts-prod-01_key  
+  client_key      = local.ts-prod-01_key
   icon            = "server"
 }
 
