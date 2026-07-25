@@ -42,7 +42,7 @@ resource "authentik_certificate_key_pair" "pve-prod-03-ca_authentik_key_pair" {
   name             = "pve-prod-03-ca"
   certificate_data = local.pve-prod-03_ca
   lifecycle {
-    ignore_changes = [key_data]
+    ignore_changes = [certificate_data, key_data]
   }
 }
 
@@ -50,6 +50,9 @@ resource "authentik_certificate_key_pair" "pve-prod-03-client_authentik_key_pair
   name             = "pve-prod-03-client"
   certificate_data = local.pve-prod-03_cert
   key_data         = local.pve-prod-03_key
+  lifecycle {
+    ignore_changes = [certificate_data, key_data]
+  }
 }
 
 # Authentik Service Connection and Outpost

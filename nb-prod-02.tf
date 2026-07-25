@@ -42,7 +42,7 @@ resource "authentik_certificate_key_pair" "nb-prod-02-ca_authentik_key_pair" {
   name             = "nb-prod-02-ca"
   certificate_data = local.nb-prod-02_ca
   lifecycle {
-    ignore_changes = [key_data]
+    ignore_changes = [certificate_data, key_data]
   }
 }
 
@@ -50,6 +50,9 @@ resource "authentik_certificate_key_pair" "nb-prod-02-client_authentik_key_pair"
   name             = "nb-prod-02-client"
   certificate_data = local.nb-prod-02_cert
   key_data         = local.nb-prod-02_key
+  lifecycle {
+    ignore_changes = [certificate_data, key_data]
+  }
 }
 
 # Authentik Service Connection and Outpost

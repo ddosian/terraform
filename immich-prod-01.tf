@@ -54,7 +54,7 @@ resource "authentik_certificate_key_pair" "immich-prod-01-ca_authentik_key_pair"
   name             = "immich-prod-01-ca"
   certificate_data = local.immich-prod-01_ca
   lifecycle {
-    ignore_changes = [key_data]
+    ignore_changes = [certificate_data, key_data]
   }
 }
 
@@ -62,6 +62,9 @@ resource "authentik_certificate_key_pair" "immich-prod-01-client_authentik_key_p
   name             = "immich-prod-01-client"
   certificate_data = local.immich-prod-01_cert
   key_data         = local.immich-prod-01_key
+  lifecycle {
+    ignore_changes = [certificate_data, key_data]
+  }
 }
 
 # Authentik Service Connection and Outpost
