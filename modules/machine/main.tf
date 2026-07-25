@@ -1,3 +1,24 @@
+# Tell Terraform which non-HashiCorp providers this module uses.
+terraform {
+  required_providers {
+    adguard = {
+      source = "gmichels/adguard"
+    }
+    dockhand = {
+      source = "kalebharrison/dockhand"
+    }
+    uptimekuma = {
+      source = "breml/uptimekuma"
+    }
+    authentik = {
+      source = "goauthentik/authentik"
+    }
+    netbox = {
+      source = "e-breuninger/netbox"
+    }
+  }
+}
+
 # DNS Records
 resource "adguard_rewrite" "record" {
   domain = var.hostname
@@ -112,24 +133,24 @@ resource "netbox_device" "pve-prod-01_netbox_device" {
   status         = "active"
 }
 
-resource "authentik_provider_proxy" "traefik-pve-prod-01_authentik_provider" {
-  name               = "Provider for Traefik (pve-prod-01)"
-  external_host      = "https://traefik.pve-prod-01.internal.dontddos.me"
+resource "authentik_provider_proxy" "traefik_authentik_provider" {
+  name               = "Provider for Traefik (${var.name})"
+  external_host      = "https://traefik.${var.hostname}"
   mode               = "forward_single"
   authorization_flow = data.authentik_flow.explicit-authorization-flow.id
   invalidation_flow  = data.authentik_flow.default-provider-invalidation-flow.id
 }
 
-resource "authentik_application" "traefik-pve-prod-01_authentik_application" {
-  name              = "Traefik (PVE-Prod-01)"
-  slug              = "traefik-pve-prod-01"
-  protocol_provider = authentik_provider_proxy.traefik-pve-prod-01_authentik_provider.id
+resource "authentik_application" "traefik_authentik_application" {
+  name              = "Traefik (${var.name})"
+  slug              = "traefik-${var.name}"
+  protocol_provider = authentik_provider_proxy.traefik_authentik_provider.id
   meta_icon         = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/traefik.svg"
   group             = "Networking"
 }
 
-resource "authentik_policy_binding" "traefik-pve-prod-01_lab-admins_authentik_policy_binding" {
-  target = authentik_application.traefik-pve-prod-01_authentik_application.uuid
+resource "authentik_policy_binding" "traefik_lab_admins_authentik_policy_binding" {
+  target = authentik_application.traefik_authentik_application.uuid
   group  = data.authentik_group.lab_admins.id
   order  = 0
 }
