@@ -56,7 +56,7 @@ resource "uptimekuma_monitor_ping" "uptimekuma_monitor" {
   upside_down    = false
   active         = true
   packet_size    = 56
-  parent         = uptimekuma_monitor_group.proxmox-ve_monitor_group.id
+  parent         = var.uptimekuma_parent_id
 }
 
 # Authentik Cert Key-pairs
@@ -124,10 +124,10 @@ resource "authentik_outpost" "authentik_outpost" {
 
 resource "netbox_device" "pve-prod-01_netbox_device" {
   name           = "PVE-Prod-01"
-  device_type_id = netbox_device_type.hpe_proliant_dl360_gen9.id
-  role_id        = netbox_device_role.virtualization.id
-  site_id        = netbox_site.home.id
-  rack_id        = netbox_rack.main.id
+  device_type_id = var.netbox_device_type_id
+  role_id        = var.netbox_device_role_id
+  site_id        = var.netbox_site_id
+  rack_id        = var.netbox_rack_id
   rack_position  = 10
   rack_face      = "front"
   status         = "active"
@@ -137,8 +137,8 @@ resource "authentik_provider_proxy" "traefik_authentik_provider" {
   name               = "Provider for Traefik (${var.name})"
   external_host      = "https://traefik.${var.hostname}"
   mode               = "forward_single"
-  authorization_flow = data.authentik_flow.explicit-authorization-flow.id
-  invalidation_flow  = data.authentik_flow.default-provider-invalidation-flow.id
+  authorization_flow = var.authentik_authorization_flow_id
+  invalidation_flow  = var.authentik_invalidation_flow_id
 }
 
 resource "authentik_application" "traefik_authentik_application" {

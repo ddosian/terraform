@@ -4,3 +4,10 @@ variable "ip_address" {}
 variable "ca_cert" {}
 variable "client_cert" {}
 variable "client_key" {}
+variable "uptimekuma_parent_id" {}
+variable "netbox_device_type_id" {}
+variable "netbox_device_role_id" {}
+variable "netbox_site_id" {}
+variable "netbox_rack_id" {}
+variable "authentik_authorization_flow_id" {}
+variable "authentik_invalidation_flow_id" {}
