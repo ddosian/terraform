@@ -7,6 +7,8 @@ variables:
 terraform_apply:
   stage: apply
   image: hashicorp/terraform:1.15.8
+  tags:
+    - gl-runner-prod-01
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   script:
