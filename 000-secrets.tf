@@ -27,6 +27,8 @@ locals {
   gitlab_client_secret   = data.infisical_secrets.terraform_production_secrets.secrets["gitlab_client_secret"].value
   ts-prod-01_password    = data.infisical_secrets.terraform_production_secrets.secrets["ts-prod-01_password"].value
   ts-prod-02_password    = data.infisical_secrets.terraform_production_secrets.secrets["ts-prod-02_password"].value
+  b2_key_id              = data.infisical_secrets.terraform_production_secrets.secrets["b2_key_id"].value
+  b2_application_key     = data.infisical_secrets.terraform_production_secrets.secrets["b2_application_key"].value
 
   pve-prod-01_ca   = data.infisical_secrets.docker_production_secrets.secrets["pve-prod-01_ca"].value
   pve-prod-01_cert = data.infisical_secrets.docker_production_secrets.secrets["pve-prod-01_cert"].value

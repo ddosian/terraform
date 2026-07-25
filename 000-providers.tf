@@ -32,6 +32,10 @@ terraform {
       source  = "infisical/infisical"
       version = "0.19.6"
     }
+    b2 = {
+      source  = "Backblaze/b2"
+      version = "0.13.1"
+    }
   }
 }
 
@@ -93,4 +97,9 @@ provider "infisical" {
       client_secret = var.infisical_client_secret
     }
   }
+}
+
+provider "b2" {
+  application_key_id = local.b2_key_id
+  application_key    = local.b2_application_key
 }
