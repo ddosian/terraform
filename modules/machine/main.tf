@@ -151,6 +151,6 @@ resource "authentik_application" "traefik_authentik_application" {
 
 resource "authentik_policy_binding" "traefik_lab_admins_authentik_policy_binding" {
   target = authentik_application.traefik_authentik_application.uuid
-  group  = data.authentik_group.lab_admins.id
+  group  = var.authentik_lab_admins_group_id
   order  = 0
 }

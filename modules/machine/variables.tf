@@ -11,3 +11,4 @@ variable "netbox_site_id" {}
 variable "netbox_rack_id" {}
 variable "authentik_authorization_flow_id" {}
 variable "authentik_invalidation_flow_id" {}
+variable "authentik_lab_admins_group_id" {}

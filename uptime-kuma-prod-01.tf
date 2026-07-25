@@ -124,7 +124,7 @@ resource "uptimekuma_status_page" "public" {
     {
       name = "Proxmox VE"
       monitor_list = [
-        { id = uptimekuma_monitor_ping.pve-prod-01_uptimekuma_monitor.id },
+        { id = module.pve_prod_01.uptimekuma_monitor_id },
         { id = uptimekuma_monitor_ping.pve-prod-02_uptimekuma_monitor.id },
         { id = uptimekuma_monitor_ping.pve-prod-03_uptimekuma_monitor.id },
       ]
