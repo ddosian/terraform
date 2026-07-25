@@ -43,38 +43,36 @@ terraform {
 provider "adguard" {
   host     = "adguard-home-prod-01.dns-prod-01.internal.dontddos.me"
   username = "ddos"
-  password = local.adguard_password
+  # Password passed from env
 }
 
 provider "dockhand" {
-  endpoint  = local.dockhand_endpoint
-  api_token = local.dockhand_api_token
+  endpoint  = "https://dockhand-prod-01.k3s-cl-prod-02.internal.dontddos.me"
+  # API Token passed from env
 }
 
 provider "cloudflare" {
-  api_token = local.cloudflare_api_token
+  # API Token passed from env
 }
 
 provider "uptimekuma" {
   endpoint = "https://uptime-kuma-prod-01.k3s-cl-prod-02.internal.dontddos.me"
-  username = local.uptimekuma_username
-  password = local.uptimekuma_password
+  # Username & Password passed from env
 }
 
 provider "authentik" {
   url   = "https://authentik-prod-01.k3s-cl-prod-01.internal.dontddos.me"
-  token = local.authentik_token
+  # Token passed from env
 }
 
 provider "proxmox" {
   pm_api_url          = "https://pve-prod-01.internal.dontddos.me:8006/api2/json"
-  pm_api_token_id     = local.pm_api_token_id
-  pm_api_token_secret = local.pm_api_token_secret
+  # Token & token ID passed from env
 }
 
 provider "netbox" {
   server_url = "https://netbox-prod-01.k3s-cl-prod-02.internal.dontddos.me"
-  api_token  = local.netbox_api_token
+  # API Token passed from env
 }
 
 variable "infisical_client_id" {
@@ -100,6 +98,5 @@ provider "infisical" {
 }
 
 provider "b2" {
-  application_key_id = local.b2_key_id
-  application_key    = local.b2_application_key
+  # Key passed from env
 }
