@@ -10,7 +10,7 @@ resource "adguard_rewrite" "pve-prod-01_wildcard_record" {
 
 # Dockhand Environment
 resource "dockhand_environment" "pve-prod-01_dockhand_environment" {
-  name            = "pve-prod-01"
+  name            = "pve-prod-01-dockhand"
   connection_type = "direct"
   host            = "pve-prod-01.internal.dontddos.me"
 
