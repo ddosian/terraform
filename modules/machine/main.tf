@@ -89,7 +89,7 @@ resource "authentik_service_connection_docker" "authentik_service_connection" {
 resource "authentik_outpost" "authentik_outpost" {
   name = var.name
   protocol_providers = [
-    authentik_provider_proxy.traefik-authentik_provider.id
+    authentik_provider_proxy.traefik_authentik_provider.id
   ]
   config = jsonencode({
     log_level                        = "info"
