@@ -1,0 +1,14 @@
+stages:
+  - apply
+
+variables:
+  TF_IN_AUTOMATION: "true"
+
+terraform_apply:
+  stage: apply
+  image: hashicorp/terraform:1.15.8
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  script:
+    - terraform init -input=false
+    - terraform apply -input=false -auto-approve
