@@ -9,19 +9,19 @@ resource "adguard_rewrite" "pve-prod-01_wildcard_record" {
 }
 
 # Dockhand Environment
-# resource "dockhand_environment" "pve-prod-01_dockhand_environment" {
-#   name            = "pve-prod-01"
-#   connection_type = "direct"
-#   host            = "pve-prod-01.internal.dontddos.me"
+resource "dockhand_environment" "pve-prod-01_dockhand_environment" {
+  name            = "pve-prod-01"
+  connection_type = "direct"
+  host            = "pve-prod-01.internal.dontddos.me"
 
-#   protocol        = "https"
-#   port            = 2376
-#   tls_skip_verify = false
-#   ca_cert         = local.pve-prod-01_ca
-#   client_cert     = local.pve-prod-01_cert
-#   client_key      = local.pve-prod-01_key
-#   icon            = "server"
-# }
+  protocol        = "https"
+  port            = 2376
+  tls_skip_verify = false
+  ca_cert         = local.pve-prod-01_ca
+  client_cert     = local.pve-prod-01_cert
+  client_key      = local.pve-prod-01_key
+  icon            = "server"
+}
 
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "pve-prod-01_uptimekuma_monitor" {
