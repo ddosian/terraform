@@ -47,7 +47,7 @@ provider "adguard" {
 }
 
 provider "dockhand" {
-  endpoint  = "https://dockhand-prod-01.k3s-cl-prod-02.internal.dontddos.me"
+  endpoint = "https://dockhand-prod-01.k3s-cl-prod-02.internal.dontddos.me"
   # API Token passed from env
 }
 
@@ -61,12 +61,12 @@ provider "uptimekuma" {
 }
 
 provider "authentik" {
-  url   = "https://authentik-prod-01.k3s-cl-prod-01.internal.dontddos.me"
+  url = "https://authentik-prod-01.k3s-cl-prod-01.internal.dontddos.me"
   # Token passed from env
 }
 
 provider "proxmox" {
-  pm_api_url          = "https://pve-prod-01.internal.dontddos.me:8006/api2/json"
+  pm_api_url = "https://pve-prod-01.internal.dontddos.me:8006/api2/json"
   # Token & token ID passed from env
 }
 
