@@ -165,3 +165,25 @@ resource "proxmox_vm_qemu" "infisical-prod-01_proxmox_vm" {
     ]
   }
 }
+
+resource "authentik_provider_proxy" "traefik-infisical-prod-01_authentik_provider" {
+  name               = "Provider for Traefik (infisical-prod-01)"
+  external_host      = "https://traefik.infisical-prod-01.internal.dontddos.me"
+  mode               = "forward_single"
+  authorization_flow = data.authentik_flow.explicit-authorization-flow.id
+  invalidation_flow  = data.authentik_flow.default-provider-invalidation-flow.id
+}
+
+resource "authentik_application" "traefik-infisical-prod-01_authentik_application" {
+  name              = "Traefik (Infisical-Prod-01)"
+  slug              = "traefik-infisical-prod-01"
+  protocol_provider = authentik_provider_proxy.traefik-infisical-prod-01_authentik_provider.id
+  meta_icon         = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/traefik.svg"
+  group             = "Networking"
+}
+
+resource "authentik_policy_binding" "traefik-infisical-prod-01_lab-admins_authentik_policy_binding" {
+  target = authentik_application.traefik-infisical-prod-01_authentik_application.uuid
+  group  = data.authentik_group.lab_admins.id
+  order  = 0
+}
