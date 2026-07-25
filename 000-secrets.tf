@@ -25,8 +25,8 @@ locals {
   netbox_api_token       = data.infisical_secrets.terraform_production_secrets.secrets["NETBOX_API_TOKEN"].value
   gitlab_client_id       = data.infisical_secrets.terraform_production_secrets.secrets["GITLAB_CLIENT_ID"].value
   gitlab_client_secret   = data.infisical_secrets.terraform_production_secrets.secrets["GITLAB_CLIENT_SECRET"].value
-  ts-prod-01_password    = data.infisical_secrets.terraform_production_secrets.secrets["TS-PROD-01_ROOT_PASSWORD"].value
-  ts-prod-02_password    = data.infisical_secrets.terraform_production_secrets.secrets["TS-PROD-02_ROOT_PASSWORD"].value
+  ts-prod-01_password    = data.infisical_secrets.terraform_production_secrets.secrets["TS_PROD_01_ROOT_PASSWORD"].value
+  ts-prod-02_password    = data.infisical_secrets.terraform_production_secrets.secrets["TS_PROD_02_ROOT_PASSWORD"].value
   b2_key_id              = data.infisical_secrets.terraform_production_secrets.secrets["B2_KEY_ID"].value
   b2_application_key     = data.infisical_secrets.terraform_production_secrets.secrets["B2_APPLICATION_KEY"].value
 
