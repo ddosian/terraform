@@ -12,7 +12,6 @@ data "infisical_secrets" "docker_production_secrets" {
 
 locals {
   adguard_password       = data.infisical_secrets.terraform_production_secrets.secrets["ADGUARD_PASSWORD"].value
-  dockhand_endpoint      = data.infisical_secrets.terraform_production_secrets.secrets["DOCKHAND_ENDPOINT"].value
   dockhand_api_token     = data.infisical_secrets.terraform_production_secrets.secrets["DOCKHAND_API_TOKEN"].value
   cloudflare_api_token   = data.infisical_secrets.terraform_production_secrets.secrets["CLOUDFLARE_API_TOKEN"].value
   uptimekuma_username    = data.infisical_secrets.terraform_production_secrets.secrets["UPTIMEKUMA_USERNAME"].value
@@ -27,7 +26,7 @@ locals {
   gitlab_client_secret   = data.infisical_secrets.terraform_production_secrets.secrets["GITLAB_CLIENT_SECRET"].value
   ts-prod-01_password    = data.infisical_secrets.terraform_production_secrets.secrets["TS_PROD_01_ROOT_PASSWORD"].value
   ts-prod-02_password    = data.infisical_secrets.terraform_production_secrets.secrets["TS_PROD_02_ROOT_PASSWORD"].value
-  b2_key_id              = data.infisical_secrets.terraform_production_secrets.secrets["B2_KEY_ID"].value
+  b2_key_id              = data.infisical_secrets.terraform_production_secrets.secrets["B2_APPLICATION_KEY_ID"].value
   b2_application_key     = data.infisical_secrets.terraform_production_secrets.secrets["B2_APPLICATION_KEY"].value
 
   pve-prod-01_ca   = data.infisical_secrets.docker_production_secrets.secrets["pve-prod-01_ca"].value
