@@ -14,5 +14,5 @@ terraform_apply:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   script:
-    - terraform init -input=false
+    - terraform init -input=false -reconfigure -backend-config="profile="
     - terraform apply -input=false -auto-approve

@@ -4,8 +4,6 @@ terraform {
     key    = "terraform.tfstate"
     region = "us-east-1"
 
-    profile = "b2"
-
     endpoints = {
       s3 = "https://s3.us-west-004.backblazeb2.com"
     }
