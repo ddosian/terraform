@@ -4,6 +4,11 @@ resource "adguard_rewrite" "media-prod-02_record" {
   answer = "10.78.1.108"
 }
 
+resource "adguard_rewrite" "media-prod-02_wildcard_record" {
+  domain = "*.media-prod-02.internal.dontddos.me"
+  answer = "media-prod-02.internal.dontddos.me"
+}
+
 # Dockhand Environment
 resource "dockhand_environment" "media-prod-02_dockhand_environment" {
   name            = "media-prod-02"
