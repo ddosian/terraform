@@ -14,6 +14,12 @@ variable "host" {
   default     = "pve-prod-01"
 }
 
+variable "domain" {
+  description = "The domain name for the AdGuard DNS record."
+  type        = string
+  default     = "internal.dontddos.me"
+}
+
 variable "template" {
   description = "The template to clone for the virtual machine."
   type        = string

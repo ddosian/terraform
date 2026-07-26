@@ -3,6 +3,9 @@ terraform {
     proxmox = {
       source  = "Telmate/proxmox"
     }
+    adguard = {
+      source  = "gmichels/adguard"
+    }
   }
 }
 
@@ -71,4 +74,15 @@ resource "proxmox_vm_qemu" "proxmox_vm" {
       startup_shutdown,
     ]
   }
+}
+
+# Adguard DNS Records
+resource "adguard_rewrite" "record" {
+  domain = "${var.name}.${var.domain}"
+  answer = var.ip_address
+}
+
+resource "adguard_rewrite" "wildcard_record" {
+  domain = "*.${var.name}.${var.domain}"
+  answer = "${var.name}.${var.domain}"
 }
