@@ -1,3 +1,10 @@
+terraform {
+  required_providers {
+    proxmox = {
+      source  = "Telmate/proxmox"
+    }
+  }
+}
 
 # Proxmox VM
 resource "proxmox_vm_qemu" "proxmox_vm" {
