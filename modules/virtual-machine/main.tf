@@ -79,7 +79,7 @@ resource "proxmox_vm_qemu" "proxmox_vm" {
 # Adguard DNS Records
 resource "adguard_rewrite" "record" {
   domain = "${var.name}.${var.domain}"
-  answer = var.ip_address
+  answer = split("/", var.ip_address)[0]
 }
 
 resource "adguard_rewrite" "wildcard_record" {
