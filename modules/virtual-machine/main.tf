@@ -90,7 +90,7 @@ resource "adguard_rewrite" "wildcard_record" {
 # Uptime Kuma Monitor
 resource "uptimekuma_monitor_ping" "uptimekuma_monitor" {
   name           = var.name
-  hostname       = "${}var.name}.${var.domain}"
+  hostname       = "${var.name}.${var.domain}"
   interval       = 60
   timeout        = 30
   max_retries    = 2
