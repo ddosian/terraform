@@ -86,3 +86,17 @@ resource "adguard_rewrite" "wildcard_record" {
   domain = "*.${var.name}.${var.domain}"
   answer = "${var.name}.${var.domain}"
 }
+
+# Uptime Kuma Monitor
+resource "uptimekuma_monitor_ping" "uptimekuma_monitor" {
+  name           = var.name
+  hostname       = "${}var.name}.${var.domain}"
+  interval       = 60
+  timeout        = 30
+  max_retries    = 2
+  retry_interval = 60
+  upside_down    = false
+  active         = true
+  packet_size    = 56
+  parent         = uptimekuma_monitor_group.vms_monitor_group.id
+}
