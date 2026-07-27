@@ -194,7 +194,7 @@ resource "uptimekuma_status_page" "public" {
         { id = uptimekuma_monitor_ping.media-prod-01_uptimekuma_monitor.id },
         { id = uptimekuma_monitor_ping.media-prod-02_uptimekuma_monitor.id },
         { id = uptimekuma_monitor_ping.mon-prod-01_uptimekuma_monitor.id },
-        { id = module.nc-prod-01.uptimekuma_monitor_ping.uptimekuma_monitor.id },
+        { id = module.nc-prod-01_vm.uptimekuma_monitor_ping.uptimekuma_monitor.id },
         { id = uptimekuma_monitor_ping.wings-prod-01_uptimekuma_monitor.id },
       ]
     },
