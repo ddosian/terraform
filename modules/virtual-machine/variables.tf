@@ -78,3 +78,9 @@ variable "nameserver" {
   type        = string
   default     = "10.77.1.103"
 }
+
+variable "monitor_group" {
+  description = "The Uptime Kuma monitor group ID to parent this VM monitor under."
+  type        = number
+  default = uptimekuma_monitor_group.vms_monitor_group.id
+}
