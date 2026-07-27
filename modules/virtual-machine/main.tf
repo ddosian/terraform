@@ -6,6 +6,9 @@ terraform {
     adguard = {
       source  = "gmichels/adguard"
     }
+    uptimekuma = {
+      source  = "breml/uptimekuma"
+    }
   }
 }
 
