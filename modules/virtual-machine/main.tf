@@ -101,5 +101,5 @@ resource "uptimekuma_monitor_ping" "uptimekuma_monitor" {
   upside_down    = false
   active         = true
   packet_size    = 56
-  parent         = var.uptimekuma_parent_id
+  parent         = var.monitor_group
 }
