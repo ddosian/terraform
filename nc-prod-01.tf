@@ -10,3 +10,17 @@ module "nc-prod-01_vm" {
 
   monitor_group = uptimekuma_monitor_group.vms_monitor_group.id
 }
+
+resource "dockhand_environment" "nc-prod-01_dockhand_environment" {
+  name            = "nc-prod-01"
+  connection_type = "direct"
+  host            = "nc-prod-01.internal.dontddos.me"
+
+  protocol        = "https"
+  port            = 2376
+  tls_skip_verify = false
+  ca_cert         = local.nc-prod-01_ca
+  client_cert     = local.nc-prod-01_cert
+  client_key      = local.nc-prod-01_key
+  icon            = "server"
+}

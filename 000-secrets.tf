@@ -108,4 +108,8 @@ locals {
   wings-prod-01_ca   = data.infisical_secrets.docker_production_secrets.secrets["wings-prod-01_ca"].value
   wings-prod-01_cert = data.infisical_secrets.docker_production_secrets.secrets["wings-prod-01_cert"].value
   wings-prod-01_key  = data.infisical_secrets.docker_production_secrets.secrets["wings-prod-01_key"].value
+
+  nc-prod-01_ca   = data.infisical_secrets.docker_production_secrets.secrets["nc-prod-01_ca"].value
+  nc-prod-01_cert = data.infisical_secrets.docker_production_secrets.secrets["nc-prod-01_cert"].value
+  nc-prod-01_key  = data.infisical_secrets.docker_production_secrets.secrets["nc-prod-01_key"].value
 }
