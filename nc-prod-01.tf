@@ -1,5 +1,5 @@
 module "nc-prod-01_vm" {
-  source = "../modules/virtual-machine"
+  source = "modules/virtual-machine"
 
   name       = "nc-prod-01"
   id         = 122
