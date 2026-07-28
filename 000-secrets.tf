@@ -11,6 +11,13 @@ data "infisical_secrets" "docker_production_secrets" {
 }
 
 locals {
+  dockhand_client_id     = data.infisical_secrets.terraform_production_secrets.secrets["DOCKHAND_CLIENT_ID"].value
+  dockhand_client_secret = data.infisical_secrets.terraform_production_secrets.secrets["DOCKHAND_CLIENT_SECRET"].value
+  gitlab_client_id       = data.infisical_secrets.terraform_production_secrets.secrets["GITLAB_CLIENT_ID"].value
+  gitlab_client_secret   = data.infisical_secrets.terraform_production_secrets.secrets["GITLAB_CLIENT_SECRET"].value
+  ts-prod-01_password    = data.infisical_secrets.terraform_production_secrets.secrets["TS_PROD_01_ROOT_PASSWORD"].value
+  ts-prod-02_password    = data.infisical_secrets.terraform_production_secrets.secrets["TS_PROD_02_ROOT_PASSWORD"].value
+
   pve-prod-01_ca   = data.infisical_secrets.docker_production_secrets.secrets["pve-prod-01_ca"].value
   pve-prod-01_cert = data.infisical_secrets.docker_production_secrets.secrets["pve-prod-01_cert"].value
   pve-prod-01_key  = data.infisical_secrets.docker_production_secrets.secrets["pve-prod-01_key"].value
