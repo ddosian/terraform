@@ -4,5 +4,8 @@ resource "uptimekuma_monitor_http" "qbittorrent-prod-01" {
   interval = 60
   timeout  = 30
   active   = true
-  parent   = uptimekuma_monitor_group.media.id
+  notification_ids = [
+    1,
+  ]
+  parent = uptimekuma_monitor_group.media.id
 }

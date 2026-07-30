@@ -42,5 +42,8 @@ resource "uptimekuma_monitor_http" "gitlab-prod-01" {
   interval = 60
   timeout  = 30
   active   = true
-  parent   = uptimekuma_monitor_group.git.id
+  notification_ids = [
+    1,
+  ]
+  parent = uptimekuma_monitor_group.git.id
 }

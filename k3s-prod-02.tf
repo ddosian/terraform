@@ -15,5 +15,8 @@ resource "uptimekuma_monitor_ping" "k3s-prod-02_uptimekuma_monitor" {
   upside_down    = false
   active         = true
   packet_size    = 56
-  parent         = uptimekuma_monitor_group.k3s-cl-prod-01_monitor_group.id
+  notification_ids = [
+    1,
+  ]
+  parent = uptimekuma_monitor_group.k3s-cl-prod-01_monitor_group.id
 }

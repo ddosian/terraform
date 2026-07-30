@@ -7,5 +7,8 @@ resource "uptimekuma_monitor_http" "prometheus-prod-01" {
   retry_interval        = 60
   active                = true
   accepted_status_codes = ["200-299"]
-  parent                = uptimekuma_monitor_group.monitoring.id
+  notification_ids = [
+    1,
+  ]
+  parent = uptimekuma_monitor_group.monitoring.id
 }
