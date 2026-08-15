@@ -6,6 +6,7 @@ resource "uptimekuma_monitor_http" "github" {
   active   = true
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.git.id
 }

@@ -9,6 +9,7 @@ resource "uptimekuma_monitor_http" "traefik-calagopus-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -24,6 +25,7 @@ resource "uptimekuma_monitor_http" "traefik-dns-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -39,6 +41,7 @@ resource "uptimekuma_monitor_http" "traefik-dns-prod-02" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -54,6 +57,7 @@ resource "uptimekuma_monitor_http" "traefik-gl-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -69,6 +73,7 @@ resource "uptimekuma_monitor_http" "traefik-gl-runner-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -84,6 +89,7 @@ resource "uptimekuma_monitor_http" "traefik-immich-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -99,6 +105,7 @@ resource "uptimekuma_monitor_http" "traefik-infisical-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -114,6 +121,7 @@ resource "uptimekuma_monitor_http" "traefik-media-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -129,6 +137,7 @@ resource "uptimekuma_monitor_http" "traefik-media-prod-02" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -144,6 +153,7 @@ resource "uptimekuma_monitor_http" "traefik-mon-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -159,6 +169,7 @@ resource "uptimekuma_monitor_http" "traefik-nb-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -174,6 +185,7 @@ resource "uptimekuma_monitor_http" "traefik-nb-prod-02" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -189,6 +201,7 @@ resource "uptimekuma_monitor_http" "traefik-pve-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -204,6 +217,7 @@ resource "uptimekuma_monitor_http" "traefik-pve-prod-02" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -219,6 +233,7 @@ resource "uptimekuma_monitor_http" "traefik-pve-prod-03" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -234,6 +249,7 @@ resource "uptimekuma_monitor_http" "traefik-ts-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -249,6 +265,7 @@ resource "uptimekuma_monitor_http" "traefik-ts-prod-02" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
@@ -264,6 +281,7 @@ resource "uptimekuma_monitor_http" "traefik-wings-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }

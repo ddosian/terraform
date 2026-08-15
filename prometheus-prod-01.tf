@@ -9,6 +9,7 @@ resource "uptimekuma_monitor_http" "prometheus-prod-01" {
   accepted_status_codes = ["200-299"]
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.monitoring.id
 }

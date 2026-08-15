@@ -37,6 +37,7 @@ resource "uptimekuma_monitor_ping" "vps-prod-01_uptimekuma_monitor" {
   packet_size    = 56
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.edge_monitor_group.id
 }

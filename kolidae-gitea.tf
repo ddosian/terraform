@@ -6,6 +6,7 @@ resource "uptimekuma_monitor_http" "kolidae-gitea" {
   active   = true
   notification_ids = [
     1,
+    2,
   ]
   parent = uptimekuma_monitor_group.git.id
 }
