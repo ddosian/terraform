@@ -285,3 +285,19 @@ resource "uptimekuma_monitor_http" "traefik-wings-prod-01" {
   ]
   parent = uptimekuma_monitor_group.traefik_monitor_group.id
 }
+
+resource "uptimekuma_monitor_http" "traefik-nc-prod-01" {
+  name                  = "Traefik (NC-Prod-01)"
+  url                   = "https://traefik.nc-prod-01.internal.dontddos.me"
+  interval              = 60
+  timeout               = 30
+  max_retries           = 2
+  retry_interval        = 60
+  active                = true
+  accepted_status_codes = ["200-299"]
+  notification_ids = [
+    1,
+    2,
+  ]
+  parent = uptimekuma_monitor_group.traefik_monitor_group.id
+}
