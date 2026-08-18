@@ -75,6 +75,7 @@ resource "uptimekuma_status_page" "public" {
         { id = uptimekuma_monitor_http.traefik-ts-prod-01.id },
         { id = uptimekuma_monitor_http.traefik-ts-prod-02.id },
         { id = uptimekuma_monitor_http.traefik-wings-prod-01.id },
+        { id = uptimekuma_monitor_http.traefik-nc-prod-01.id },
       ]
     },
     {
@@ -82,6 +83,7 @@ resource "uptimekuma_status_page" "public" {
       monitor_list = [
         { id = uptimekuma_monitor_ping.nas-prod-01_uptimekuma_monitor.id },
         { id = uptimekuma_monitor_ping.pbs-prod-01_uptimekuma_monitor.id },
+        { id = uptimekuma_monitor_ping.nextcloud-prod-01_uptimekuma_monitor.id },
       ]
     },
     {
@@ -102,6 +104,7 @@ resource "uptimekuma_status_page" "public" {
         { id = uptimekuma_monitor_ping.media-prod-02_uptimekuma_monitor.id },
         { id = uptimekuma_monitor_ping.mon-prod-01_uptimekuma_monitor.id },
         { id = uptimekuma_monitor_ping.wings-prod-01_uptimekuma_monitor.id },
+        { id = uptimekuma_monitor_ping.nc-prod-01_uptimekuma_monitor.id },
       ]
     },
     {
