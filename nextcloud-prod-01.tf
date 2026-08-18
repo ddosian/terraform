@@ -1,7 +1,7 @@
 # Cloudflare DNS records
 resource "cloudflare_dns_record" "nextcloud-prod-01_cloudflare_record" {
   zone_id = "310137280dfff667dd7414c94ef3a938"
-  name    = "nextcloud-prod-01.dontddos.me"
+  name    = "nextcloud.dontddos.me"
   ttl     = 1
   type    = "A"
   comment = "Managed by Terraform"
