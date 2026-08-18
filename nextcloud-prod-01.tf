@@ -22,5 +22,5 @@ resource "uptimekuma_monitor_http" "nextcloud-prod-01" {
     1,
     2,
   ]
-  parent = uptimekuma_monitor_group.storage.id
+  parent = uptimekuma_monitor_group.storage_monitor_group.id
 }
