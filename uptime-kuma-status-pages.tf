@@ -83,7 +83,7 @@ resource "uptimekuma_status_page" "public" {
       monitor_list = [
         { id = uptimekuma_monitor_ping.nas-prod-01_uptimekuma_monitor.id },
         { id = uptimekuma_monitor_ping.pbs-prod-01_uptimekuma_monitor.id },
-        { id = uptimekuma_monitor_ping.nextcloud-prod-01_uptimekuma_monitor.id },
+        { id = uptimekuma_monitor_ping.nextcloud-prod-01.id },
       ]
     },
     {
