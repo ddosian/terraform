@@ -3,5 +3,5 @@
 .terraform/
 terraform.tfstate*
 .terraform.lock.hcl
-*.tfvars
+credentials.auto.tfvars
 .terraform.tfstate.lock.info
