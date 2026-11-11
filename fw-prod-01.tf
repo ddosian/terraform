@@ -11,6 +11,11 @@ resource "proxmox_vm_qemu" "fw-prod-01" {
     bridge = "vmbr0"
   }
 
+  memory = 2048
+  cpu {
+    cores = 2
+  }
+
   # LAN
   network {
     id     = 1
