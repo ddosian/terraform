@@ -5,16 +5,16 @@ resource "proxmox_vm_qemu" "fw-prod-01" {
   vmid = 100
   tags = "production,networking,routing,firewall,pfsense"
 
+  memory = 2048
+  cpu {
+    cores = 2
+  }
+
   # WAN
   network {
     id     = 0
     model  = "virtio"
     bridge = "vmbr0"
-  }
-
-  memory = 2048
-  cpu {
-    cores = 2
   }
 
   # LAN
