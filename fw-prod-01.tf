@@ -45,3 +45,13 @@ resource "proxmox_vm_qemu" "fw-prod-01" {
   boot = "order=scsi0;ide2"
 
 }
+
+resource "pfsense_interface" "mgmt" {
+  port         = "vtnet1.10"
+  description  = "MGMT"
+  enabled      = true
+  ipv4_type    = "staticv4"
+  ipv4_address = "10.77.10.1"
+  ipv4_subnet  = "24"
+  ipv6_type    = "none"
+}
