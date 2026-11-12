@@ -3,6 +3,7 @@ resource "proxmox_vm_qemu" "fw-prod-01" {
   target_node = "pve-prod-01"
 
   vmid = 100
+  tags = "production,networking,routing,firewall,pfsense"
 
   # WAN
   network {
