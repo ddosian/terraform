@@ -8,7 +8,17 @@ terraform {
       source  = "Telmate/proxmox"
       version = "3.0.2-rc10"
     }
+    pfsense = {
+      source  = "emanuelbesliu/pfsense"
+      version = "0.58.0"
+    }
   }
+}
+
+provider "pfsense" {
+  url             = "https://10.77.1.1"
+  password        = var.pfsense_password
+  tls_skip_verify = true
 }
 
 provider "cloudflare" {

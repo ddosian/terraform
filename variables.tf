@@ -17,3 +17,10 @@ variable "pm_api_token_secret" {
   type = string
   sensitive = true
 }
+
+
+# pfSense
+variable "pfsense_password" {
+  type = string
+  sensitive = true
+}
