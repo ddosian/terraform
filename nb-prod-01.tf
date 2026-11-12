@@ -4,6 +4,7 @@ resource "proxmox_lxc_guest" "nb-prod-01" {
   target_node  = "pve-prod-01"
   unprivileged = true
   password     = var.nb_prod_01_password
+  tags = ["production", "networking", "exitnode", "netbird"]
   template {
     file    = "debian-12-standard_12.12-1_amd64.tar.zst"
     storage = "local"
