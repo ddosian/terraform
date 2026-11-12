@@ -1,11 +1,11 @@
 # Cloudflare
-variable cloudflare_api_token {
-    type = string
-    sensitive = true
+variable "cloudflare_api_token" {
+  type      = string
+  sensitive = true
 }
 
 variable "cloudflare_zone_id" {
-  type        = string
+  type = string
 }
 
 # Proxmox
@@ -14,13 +14,12 @@ variable "pm_api_token_id" {
 }
 
 variable "pm_api_token_secret" {
-  type = string
+  type      = string
   sensitive = true
 }
 
-
-# pfSense
-variable "pfsense_password" {
-  type = string
+# nb-prod-01
+variable "nb_prod_01_password" {
+  type      = string
   sensitive = true
 }
