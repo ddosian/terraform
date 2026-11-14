@@ -34,3 +34,17 @@ resource "proxmox_lxc_guest" "nb-prod-01" {
   startup_shutdown {}
   ssh_public_keys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFoBKKeSGtfyG85mIhr5WQFW0JBF9haBOIDXz6wIEzx4 admin@dontddos.me"
 }
+
+resource "technitium_record" "nb-prod-01" {
+  domain = "nb-prod-01.home.internal.dontddos.me"
+  type = "A"
+  ip_address= "10.77.80.101"
+  ttl       = 3600
+}
+
+resource "technitium_record" "nb-prod-01_wildcard" {
+  domain = "*.nb-prod-01.home.internal.dontddos.me"
+  type = "CNAME"
+  value= "nb-prod-01.home.internal.dontddos.me"
+  ttl       = 3600
+}
