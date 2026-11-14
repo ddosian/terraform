@@ -23,3 +23,15 @@ variable "nb_prod_01_password" {
   type      = string
   sensitive = true
 }
+
+# nb-prod-02
+variable "nb_prod_02_password" {
+  type      = string
+  sensitive = true
+}
+
+# Technitium-Prod-01
+variable "technitium_token" {
+  type = string
+  sensitive = true
+}
