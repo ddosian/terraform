@@ -1,50 +1,28 @@
-resource "proxmox_lxc_guest" "nb-prod-02" {
-  name         = "nb-prod-02"
-  power_state  = "running"
-  target_node  = "pve-prod-02"
-  unprivileged = true
-  password     = var.nb_prod_02_password
+module "nb-prod-02" {
+  source = "./modules/lxc-container"
+
   tags = ["production", "networking", "exitnode", "netbird"]
-  template {
-    file    = "debian-12-standard_12.12-1_amd64.tar.zst"
-    storage = "local"
-  }
-  cpu {
-    cores = 1
-  }
-  features {
-    unprivileged {
-      nesting = true
-    }
-  }
-  memory = 1024
-  swap   = 512
-  root_mount {
-    size    = "4G"
-    storage = "local-lvm"
-  }
-  network {
-    id           = "net0"
-    name         = "eth0"
-    bridge       = "vmbr1"
-    ipv4_address = "10.77.80.102/24"
-    ipv4_gateway = "10.77.80.1"
-    vlan_native  = 80
-  }
-  startup_shutdown {}
-  ssh_public_keys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFoBKKeSGtfyG85mIhr5WQFW0JBF9haBOIDXz6wIEzx4 admin@dontddos.me"
+
+  name          = "nb-prod-02"
+  host          = "pve-prod-02"
+  password      = var.nb_prod_02_password
+  ip_address    = "10.77.80.102/24"
+  gateway       = "10.77.80.1"
+  vlan_tag      = 80
+
 }
 
-resource "technitium_record" "nb-prod-02" {
-  domain = "nb-prod-02.home.internal.dontddos.me"
-  type = "A"
-  ip_address= "10.77.80.102"
-  ttl       = 3600
+moved {
+  from = proxmox_lxc_guest.nb-prod-02
+  to   = module.nb-prod-02.proxmox_lxc_guest.proxmox_lxc
 }
 
-resource "technitium_record" "nb-prod-02_wildcard" {
-  domain = "*.nb-prod-02.home.internal.dontddos.me"
-  type = "CNAME"
-  value= "nb-prod-02.home.internal.dontddos.me"
-  ttl       = 3600
+moved {
+  from = technitium_record.nb-prod-02
+  to   = module.nb-prod-02.technitium_record.root
+}
+
+moved {
+  from = technitium_record.nb-prod-02_wildcard
+  to   = module.nb-prod-02.technitium_record.wildcard
 }
