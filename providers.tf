@@ -7,8 +7,18 @@ terraform {
     proxmox = {
       source  = "Telmate/proxmox"
       version = "3.0.2-rc10"
+    }       
+    technitium = {
+      source  = "kevynb/technitium"
+      version = "0.4.0"
     }
   }
+}
+
+provider "technitium" {
+  url = "https://technitium-prod-01.dns-prod-01.home.internal.dontddos.me"
+  skip_certificate_verification = false
+  token = var.technitium_token
 }
 
 provider "cloudflare" {
